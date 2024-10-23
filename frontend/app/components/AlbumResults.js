@@ -26,7 +26,7 @@ function AlbumResults() {
     const exampleFetch = () => {
       axios.get("http://localhost:9000/api/album/drake")
         .then(res => {
-          setAlbums(res.data.results.albummatches.album);
+          setAlbums(res.data);
         })
         .catch(error => console.log(error));
     }
