@@ -84,7 +84,45 @@ app.get('/api/artist/:query', async (req, res) => {
                 format: 'json'
             }
         });
-        res.json(response.data);
+        res.json(response.data.results.artistmatches.artist);
+
+    } catch(error) {
+        console.error('Error fetching data from Last.fm API:', error);
+        res.status(500).json({ error: 'Failed to fetch data' });
+    }
+});
+
+app.get('/api/artist/tracks/id/:id', async (req, res) => {
+    const id = encodeURIComponent(req.params.id);
+    try {
+        const response = await axios.get(`http://ws.audioscrobbler.com/2.0/`, {
+            params: {
+                method: 'artist.gettoptracks',
+                mbid: id,
+                api_key: apiKey,
+                format: 'json',
+            }
+        });
+        res.json(response.data.toptracks.track);
+
+    } catch(error) {
+        console.error('Error fetching data from Last.fm API:', error);
+        res.status(500).json({ error: 'Failed to fetch data' });
+    }
+});
+
+app.get('/api/artist/tracks/:artist', async (req, res) => {
+    const artist = encodeURIComponent(req.params.artist);
+    try {
+        const response = await axios.get(`http://ws.audioscrobbler.com/2.0/`, {
+            params: {
+                method: 'artist.gettoptracks',
+                artist: artist,
+                api_key: apiKey,
+                format: 'json',
+            }
+        });
+        res.json(response.data.toptracks.track);
 
     } catch(error) {
         console.error('Error fetching data from Last.fm API:', error);
