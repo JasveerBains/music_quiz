@@ -1,27 +1,24 @@
 'use client';
 
-import AlbumResults from "./components/AlbumResults";
-import ArtistResults from "./components/ArtistResults";
-import SearchBar from "./components/SearchBar";
-import { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
+import SearchPage from "./components/SearchPage";
+import AlbumInfoPage from "./components/AlbumInfoPage";
+import ArtistInfoPage from "./components/ArtistInfoPage";
 
 
 export default function Home() {
 
-  const [query, setQuery] = useState("");
-  const [type, setType] = useState("album");
-
-  const handleSearchSubmit = (searchQuery, searchType) => {
-    setQuery(searchQuery);
-    setType(searchType);
-  };
-
   return (
-    <div>
-      <SearchBar onSubmit={handleSearchSubmit} />
-      {
-        type=="album" ? (query ? <AlbumResults query={query}/> : <div></div>) : (query ? <ArtistResults query={query}/> : <div></div>)
-      }
-    </div>
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/" element={<SearchPage />} />
+          <Route path="/album/*" element={<AlbumInfoPage />} />
+          <Route path="/artist/*" element={<ArtistInfoPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
