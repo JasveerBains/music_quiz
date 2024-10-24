@@ -52,11 +52,10 @@ function AlbumResults({query}) {
           albums && albums.length > 0 ? (
             albums.map((a, i) => {
               const randomIndex = a.name.length*17 % colours.length;
-              const imageUrl = a.image[3]["#text"];
               return (
                 <div key={i} className='albumCard' style={{backgroundColor: colours[randomIndex]}}>
                   <div className='albumImage'>
-                    <img src={imageUrl ? imageUrl : null}></img>
+                    <img src={a.image}></img>
                   </div>
 
                   <div className='albumText'>

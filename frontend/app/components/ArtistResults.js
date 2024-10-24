@@ -59,7 +59,7 @@ function ArtistResults({query}) {
                         <div key={i}>
                             <div className='Card' style={{backgroundColor: colours[randomIndex]}}>
                                 <div className='Image'>
-                                    <img src={a.image[3]["#text"] ? a.image[3]["#text"] : defaultImage} alt='Artist cover'></img>
+                                    <img src={a.image ? a.image : defaultImage} alt='Artist cover'></img>
                                 </div>
         
                                 <div className='Text'>
