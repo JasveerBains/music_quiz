@@ -22,15 +22,24 @@ app.get('/api/album/:query', async (req, res) => {
                 method: 'album.search',
                 album: query,
                 api_key: apiKey,
-                format: 'json'
+                format: 'json',
+                limit: 48
             }
         });
-        res.json(response.data.results.albummatches.album);
+        albums = response.data.results.albummatches.album;
 
     } catch(error) {
         console.error('Error fetching data from Last.fm API:', error);
         res.status(500).json({ error: 'Failed to fetch data' });
     }
+    processedAlbums = albums
+                    .filter(album => album.image[3]['#text'] != "")
+                    .map(album => ({
+                        name: album.name,
+                        artist: album.artist,
+                        image: album.image[3]['#text']
+                    }));
+    res.json(processedAlbums);
 });
 
 app.get('/api/album/info/:id', async (req, res) => {
@@ -81,15 +90,24 @@ app.get('/api/artist/:query', async (req, res) => {
                 method: 'artist.search',
                 artist: query,
                 api_key: apiKey,
-                format: 'json'
+                format: 'json',
+                limit: 4
             }
         });
-        res.json(response.data.results.artistmatches.artist);
+        artists = response.data.results.artistmatches.artist;
 
     } catch(error) {
         console.error('Error fetching data from Last.fm API:', error);
         res.status(500).json({ error: 'Failed to fetch data' });
     }
+
+    processedArtists = artists
+                    .filter(artist => artist.listeners > 100000)
+                    .map(artist => ({
+                        name: artist.name,
+                        image: artist.image[3]['#text']
+                    }));
+    res.json(processedArtists);
 });
 
 app.get('/api/artist/tracks/id/:id', async (req, res) => {

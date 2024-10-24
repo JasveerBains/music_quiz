@@ -47,18 +47,18 @@ function AlbumResults({query}) {
 
   return (
 
-      <div className='albumCollection'>
+      <div className='Collection'>
         {
           albums && albums.length > 0 ? (
             albums.map((a, i) => {
               const randomIndex = a.name.length*17 % colours.length;
               return (
-                <div key={i} className='albumCard' style={{backgroundColor: colours[randomIndex]}}>
-                  <div className='albumImage'>
+                <div key={i} className='Card' style={{backgroundColor: colours[randomIndex]}}>
+                  <div className='Image'>
                     <img src={a.image}></img>
                   </div>
 
-                  <div className='albumText'>
+                  <div className='Text'>
                     <h3 >{toTitleCase(a.name)}</h3>
                     <h4 >{a.artist}</h4>
                   </div>
