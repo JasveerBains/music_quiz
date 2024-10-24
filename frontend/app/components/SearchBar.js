@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import './search.css';
 import 'font-awesome/css/font-awesome.min.css';
 
-function SearchBar({onSubmit}) {
+export default function SearchBar({onSubmit}) {
 
     const [searchInput, setSearchInput] = useState("");
     const [searchType, setSearchType] = useState("album");
@@ -38,5 +38,3 @@ function SearchBar({onSubmit}) {
         </form>
     )
 }
-
-export default SearchBar;

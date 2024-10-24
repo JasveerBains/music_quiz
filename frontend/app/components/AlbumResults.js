@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import './album.css';
 
@@ -21,7 +22,7 @@ function toTitleCase(str) {
 function AlbumResults({query}) {
   const [albums, setAlbums] = useState([]);
   const colours = ['rgba(200,200,0,0.5)', 
-                    'rgba(0,200,200,0.5)', 
+                    'rgba(0,200,200,0.5)',
                     'rgba(200,0,200,0.5)',
                     'rgba(0,0,200,0.5)',
                     'rgba(200,0,0,0.5)', 
@@ -33,32 +34,39 @@ function AlbumResults({query}) {
                     'rgba(100,0,0,0.5)', 
                     'rgba(0,100,0,0.5)'];
 
+
+  const exampleFetch = () => {
+    axios.get("http://localhost:9000/api/album/" + query)
+      .then(res => {
+        setAlbums(res.data);
+      })
+      .catch(error => console.log(error));
+  }
+
+  const navigate = useNavigate();
+  const handleCardClick = (album, artist) => {
+    navigate(`/album/${artist}/${album}`);
+  }
+
   useEffect(() => {
-    const exampleFetch = () => {
-      axios.get("http://localhost:9000/api/album/" + query)
-        .then(res => {
-          setAlbums(res.data);
-        })
-        .catch(error => console.log(error));
-    }
     exampleFetch();
 
   }, [query])
 
   return (
 
-      <div className='Collection'>
+      <div className='albumCollection'>
         {
           albums && albums.length > 0 ? (
             albums.map((a, i) => {
               const randomIndex = a.name.length*17 % colours.length;
               return (
-                <div key={i} className='Card' style={{backgroundColor: colours[randomIndex]}}>
-                  <div className='Image'>
+                <div key={i} className='albumCard' style={{backgroundColor: colours[randomIndex]}} onClick={()=>handleCardClick(a.name, a.artist)}>
+                  <div className='albumImage'>
                     <img src={a.image}></img>
                   </div>
 
-                  <div className='Text'>
+                  <div className='albumText'>
                     <h3 >{toTitleCase(a.name)}</h3>
                     <h4 >{a.artist}</h4>
                   </div>
