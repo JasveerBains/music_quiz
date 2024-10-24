@@ -15,6 +15,7 @@
   padding: 1em;
   border-radius: 1.5em;
   border: solid black 1px;
+  transition: 0.6s;
 }
 
 .albumText {
