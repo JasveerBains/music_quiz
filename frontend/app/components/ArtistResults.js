@@ -1,23 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import Link from 'next/link';
 import axios from "axios";
 import './artist.css';
-
-function toTitleCase(str) {
-  str = str.toLowerCase();
-  const words = str.split(" ");
-  const capitalizedWords = words.map(word => {
-    if (/[^a-zA-Z0-9]/.test(word.charAt(0))) {
-      return word.charAt(0) + word.charAt(1).toUpperCase() + word.slice(2);
-    } else {
-      return word.charAt(0).toUpperCase() + word.slice(1);
-    }
-  });
-  return capitalizedWords.join(" ");
-}
-
 
 export default function ArtistResults({query}) {
   const [artists, setArtists] = useState([]);
@@ -36,22 +22,18 @@ export default function ArtistResults({query}) {
     'rgba(0,100,0,0.5)'];
 
     
-  const exampleFetch = () => {
-    axios.get("http://localhost:9000/api/artist/" + query)
+  const fetchArtists = () => {
+    axios.get(`http://localhost:9000/api/artist/${query}`)
       .then(res => {
         setArtists(res.data);
       })
       .catch(error => console.log(error));
   }
 
-  const navigate = useNavigate();
-  const handleCardClick = (artist) => {
-    navigate(`/artist/${artist}`);
-  }
-
   useEffect(() => {
-    exampleFetch();
-
+    if (query && query.trim() !== "") {
+      fetchArtists();
+    }
   }, [query])
 
   return (
@@ -61,17 +43,15 @@ export default function ArtistResults({query}) {
             artists.map((a, i) => {
                 const randomIndex = a.name.length*17 % colours.length;
                 return (
-                    <div key={i}>
-                        <div className='artistCard' style={{backgroundColor: colours[randomIndex]}} onClick={()=>handleCardClick(a.name)}>
-                            <div className='artistImage'>
-                                <img src={a.image ? a.image : defaultImage} alt='Artist cover'></img>
-                            </div>
-    
-                            <div className='artistText'>
-                                <h3 >{a.name}</h3>
-                            </div>
-                        </div>
-                    </div>
+                  <Link href={`/artist?name=${encodeURIComponent(a.name)}`} key={i} className='artistCard' style={{backgroundColor: colours[randomIndex]}}>
+                      <div className='artistImage'>
+                          <img src={a.image ? a.image : defaultImage} alt='Artist cover'></img>
+                      </div>
+
+                      <div className='artistText'>
+                          <h3 >{a.name}</h3>
+                      </div>
+                  </Link>
                 )
             })
         ) : (
