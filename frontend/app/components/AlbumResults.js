@@ -41,16 +41,16 @@ export default function AlbumResults({query}) {
         {
           albums && albums.length > 0 ? (
             albums.map((a, i) => {
-              const randomIndex = (a.name.length + a.artist.length)*17 % colours.length;
+              const randomIndex = (a.title.length + a.artist.name.length)*17 % colours.length;
               return (
-                <Link href={`/album?name=${encodeURIComponent(a.name)}&artist=${encodeURIComponent(a.artist)}`} key={i} className='albumCard' style={{backgroundColor: colours[randomIndex]}}>
+                <Link href={`/album?name=${encodeURIComponent(a.title)}&artist=${encodeURIComponent(a.artist.name)}`} key={i} className='albumCard' style={{backgroundColor: colours[randomIndex]}}>
                   <div className='albumImage'>
-                    <img src={a.image}></img>
+                    <img src={a.cover}></img>
                   </div>
 
                   <div className='albumText'>
-                    <h3 >{a.name}</h3>
-                    <h4 >{a.artist}</h4>
+                    <h3 >{a.title}</h3>
+                    <h4 >{a.artist.name}</h4>
                   </div>
                 </Link>
               )

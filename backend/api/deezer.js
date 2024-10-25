@@ -10,10 +10,16 @@ const getAlbums = async (query) => {
             }
         });
         const albums = response.data.data;
-        const processedAlbums = albums.map(album => ({
-            name: album.title,
-            artist: album.artist.name,
-            image: album.cover
+        const processedAlbums = albums.map(a => ({
+            id: a.id,
+            title: a.title,
+            cover: a.cover,
+            nb_track: a.nb_tracks,
+            artist: {
+                id: a.artist.id,
+                name: a.artist.name,
+                picture: a.artist.picture
+            }
         }));
 
         return processedAlbums;
@@ -28,8 +34,27 @@ const getAlbumInfoById = async (id) => {
     try {
         const response = await axios.get(`https://api.deezer.com/album/${id}`);
         console.log(response.data);
-        albumInfo = response.data;
-        return albumInfo;
+        a = response.data;
+        processedAlbumInfo = {
+            id: a.id,
+            title: a.title,
+            cover: a.cover,
+            nb_tracks: a.nb_tracks,
+            release_date: a.release_date,
+            artist: {
+                id: a.artist.id,
+                name: a.artist.name,
+                picture: a.artist.picture
+            },
+            tracks: a.tracks.data.map(t => ({
+                id: t.id,
+                title: t.title,
+                title_short: t.title_short,
+                duration: t.duration
+            }))
+        }
+
+        return processedAlbumInfo;
 
     } catch (error) {
         console.error('Error fetching data from Deezer API:', error);
@@ -44,11 +69,18 @@ const getAlbumInfoByNameAndArtist = async (artist, album) => {
                 q: `${album} ${artist}`
             }
         });
-        album = response.data.data[0];
+        a = response.data.data[0];
         processedAlbum = {
-            name: album.title,
-            artist: album.artist.name,
-            image: album.cover
+            id: a.id,
+            title: a.title,
+            cover: a.cover,
+            nb_tracks: a.nb_tracks,
+            release_date: a.release_date,
+            artist: {
+                id: a.artist.id,
+                name: a.artist.name,
+                picture: a.artist.picture
+            }
         };
 
         return processedAlbum;
@@ -69,9 +101,10 @@ const getArtists = async (query) => {
         });
         artists = response.data.data;
         processedArtists = artists
-                .map(artist => ({
-                    name: artist.name,
-                    image: artist.picture
+                .map(a => ({
+                    id: a.id,
+                    name: a.name,
+                    picture: a.picture
                 }));
 
         return processedArtists;
@@ -90,7 +123,25 @@ const getArtistTracksById = async (id) => {
             }
         });
         tracks = response.data.data;
-        return tracks;
+        processedTracks = tracks
+            .filter(t => t.artist.id == id)
+            .map(t => ({
+                id: t.id,
+                title: t.title,
+                title_short: t.title_short,
+                duration: t.duration,
+                artist: {
+                    id: t.artist.id,
+                    name: t.artist.name,
+                },
+                album: {
+                    id: t.album.id,
+                    title: t.album.title,
+                    cover: t.album.cover
+            }
+        }));
+
+        return processedTracks;
 
     } catch (error) {
         console.error('Error fetching data from Deezer API:', error);
@@ -107,7 +158,25 @@ const getArtistTracksByName = async (artist) => {
             }
         });
         tracks = response.data.data;
-        return tracks;
+        processedTracks = tracks
+            .filter(t => t.artist.name.toLowerCase() == artist.toLowerCase())
+            .map(t => ({
+                id: t.id,
+                title: t.title,
+                title_short: t.title_short,
+                duration: t.duration,
+                artist: {
+                    id: t.artist.id,
+                    name: t.artist.name,
+                },
+                album: {
+                    id: t.album.id,
+                    title: t.album.title,
+                    cover: t.album.cover
+            }
+        }));
+
+        return processedTracks;
         
     } catch (error) {
         console.error('Error fetching data from Deezer API:', error);
