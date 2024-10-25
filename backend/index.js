@@ -1,15 +1,11 @@
 const express = require("express");
-const axios = require("axios");
-const dotenv = require("dotenv");
 const cors = require("cors");
 
-api = require('./api/lastfm.js');
-
-dotenv.config();
+// api = require('./api/lastfm');
+api = require('./api/deezer');
 
 const app = express();
 const port = 9000;
-const apiKey = process.env.LASTFM_API_KEY;
 
 app.use(cors({
     origin: "*",
@@ -49,7 +45,7 @@ app.get('/api/artist/tracks/id/:id', async (req, res) => {
 
 app.get('/api/artist/tracks/:artist', async (req, res) => {
     const artist = encodeURIComponent(req.params.artist);
-    tracks = await api.getArtistTrackByName(artist);
+    tracks = await api.getArtistTracksByName(artist);
     res.json(tracks);
 });
 

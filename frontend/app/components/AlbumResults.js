@@ -1,25 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import Link from 'next/link';
 import axios from "axios";
 import './album.css';
 
-function toTitleCase(str) {
-  str = str.toLowerCase();
-  const words = str.split(" ");
-  const capitalizedWords = words.map(word => {
-    if (/[^a-zA-Z0-9]/.test(word.charAt(0))) {
-      return word.charAt(0) + word.charAt(1).toUpperCase() + word.slice(2);
-    } else {
-      return word.charAt(0).toUpperCase() + word.slice(1);
-    }
-  });
-  return capitalizedWords.join(" ");
-}
+export default function AlbumResults({query}) {
 
-
-function AlbumResults({query}) {
   const [albums, setAlbums] = useState([]);
   const colours = ['rgba(200,200,0,0.5)', 
                     'rgba(0,200,200,0.5)',
@@ -35,42 +22,37 @@ function AlbumResults({query}) {
                     'rgba(0,100,0,0.5)'];
 
 
-  const exampleFetch = () => {
-    axios.get("http://localhost:9000/api/album/" + query)
+  const fetchAlbums = () => {
+    axios.get(`http://localhost:9000/api/album/${query}`)
       .then(res => {
         setAlbums(res.data);
       })
       .catch(error => console.log(error));
   }
 
-  const navigate = useNavigate();
-  const handleCardClick = (album, artist) => {
-    navigate(`/album/${artist}/${album}`);
-  }
-
   useEffect(() => {
-    exampleFetch();
-
+    if (query && query.trim() !== "") {
+      fetchAlbums();
+    }
   }, [query])
 
   return (
-
       <div className='albumCollection'>
         {
           albums && albums.length > 0 ? (
             albums.map((a, i) => {
-              const randomIndex = a.name.length*17 % colours.length;
+              const randomIndex = (a.name.length + a.artist.length)*17 % colours.length;
               return (
-                <div key={i} className='albumCard' style={{backgroundColor: colours[randomIndex]}} onClick={()=>handleCardClick(a.name, a.artist)}>
+                <Link href={`/album?name=${encodeURIComponent(a.name)}&artist=${encodeURIComponent(a.artist)}`} key={i} className='albumCard' style={{backgroundColor: colours[randomIndex]}}>
                   <div className='albumImage'>
                     <img src={a.image}></img>
                   </div>
 
                   <div className='albumText'>
-                    <h3 >{toTitleCase(a.name)}</h3>
+                    <h3 >{a.name}</h3>
                     <h4 >{a.artist}</h4>
                   </div>
-                </div>
+                </Link>
               )
             })
           ) : (
@@ -80,5 +62,3 @@ function AlbumResults({query}) {
       </div>
   );
 }
-
-export default AlbumResults;

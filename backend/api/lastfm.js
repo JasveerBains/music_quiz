@@ -3,6 +3,19 @@ const axios = require("axios");
 require('dotenv').config()
 const apiKey = process.env.LASTFM_API_KEY;
 
+function toTitleCase(str) {
+    str = str.toLowerCase();
+    const words = str.split(" ");
+    const capitalizedWords = words.map(word => {
+        if (/[^a-zA-Z0-9]/.test(word.charAt(0))) {
+            return word.charAt(0) + word.charAt(1).toUpperCase() + word.slice(2);
+        } else {
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        }
+    });
+    return capitalizedWords.join(" ");
+}
+
 const getAlbums = async (query) => {
     try {
         const response = await axios.get(`http://ws.audioscrobbler.com/2.0/`, {
@@ -18,8 +31,8 @@ const getAlbums = async (query) => {
         processedAlbums = albums
                         .filter(album => album.image[3]['#text'] != "")
                         .map(album => ({
-                            name: album.name,
-                            artist: album.artist,
+                            name: toTitleCase(album.name),
+                            artist: toTitleCase(album.artist),
                             image: album.image[3]['#text']
                         }));
         return processedAlbums;
@@ -93,7 +106,7 @@ const getArtists = async (query) => {
     processedArtists = artists
                     .filter(artist => artist.listeners > 100000)
                     .map(artist => ({
-                        name: artist.name,
+                        name: toTitleCase(artist.name),
                         image: artist.image[3]['#text']
                     }));
     return processedArtists;
@@ -121,7 +134,7 @@ const getArtistTracksById = async (id) => {
     }
 }
 
-const getArtistTrackByName = async (artist) => {
+const getArtistTracksByName = async (artist) => {
     try {
         const response = await axios.get(`http://ws.audioscrobbler.com/2.0/`, {
             params: {
@@ -150,5 +163,5 @@ module.exports = {
     getAlbumInfoByNameAndArtist,
     getArtists,
     getArtistTracksById,
-    getArtistTrackByName
+    getArtistTracksByName
 };
