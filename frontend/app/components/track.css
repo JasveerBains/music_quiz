@@ -1,0 +1,51 @@
+table {
+    display: table;
+    width: 80%;
+    margin: 4rem auto;
+    font-size: 1.2rem;
+    border-spacing: 0 0.5rem;
+}
+
+
+tr {
+    transition: background-color 0.3s, scale 0.6s;
+    background-color: #1e1e1e;
+}
+
+
+tbody tr:hover {
+    scale: 1.02;
+    background-color: #1a1a1a;
+}
+
+td {
+    padding: 1.5rem 2rem;
+    transition: 0.3s;
+}
+
+
+th {
+    padding: 0.5rem 2rem;
+    color: grey;
+    text-align: left;
+    font-weight: normal;
+}
+
+
+.duration {
+    width: 3rem;
+    text-align: center;
+}
+
+.clock {
+    width: 3rem;
+    text-align: center;
+}
+
+.rank {
+    color: grey;
+    width: 3rem;
+    text-align: center;
+}
+
+

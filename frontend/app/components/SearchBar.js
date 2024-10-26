@@ -2,7 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import './search.css';
-import 'font-awesome/css/font-awesome.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+
+
 
 export default function SearchBar({onSubmit}) {
 
@@ -17,7 +20,7 @@ export default function SearchBar({onSubmit}) {
     return (
         <form className="searchContainer" >
             <div className="bar">
-                <i className="fa fa-search"></i>
+                <FontAwesomeIcon icon={faMagnifyingGlass} className='searchIcon'/>
                 <input type="text" placeholder="Search..." value={searchInput} onChange={(e) => {
                     setSearchInput(e.target.value);
                 }}/>

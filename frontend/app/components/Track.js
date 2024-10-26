@@ -1,3 +1,5 @@
+import "./track.css"
+
 export default function Track({track}) {
 
     function timeFormat(seconds) {
@@ -9,10 +11,10 @@ export default function Track({track}) {
     return (
         <tr>
             {/* <td>{track.id}</td> */}
-            <td>{track.rank}</td>
+            <td className="rank">{track.rank}</td>
             <td>{track.title}</td>
             {/* <td>{track.title_short}</td> */}
-            <td>{timeFormat(track.duration)}</td>
+            <td className="duration">{timeFormat(track.duration)}</td>
         </tr>
     )
 }

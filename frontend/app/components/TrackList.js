@@ -1,5 +1,8 @@
-import React from 'react'
-import Track from './Track'
+import React from 'react';
+import Track from './Track';
+import "./track.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
 
 const TrackList = ({tracks}) => {
 
@@ -8,10 +11,10 @@ const TrackList = ({tracks}) => {
             <thead>
                 <tr>
                     {/* <th>id</th> */}
-                    <th>#</th>
+                    <th className='rank'>#</th>
                     <th>Title</th>
                     {/* <th>title short</th> */}
-                    <th>Duration</th>
+                    <th className='clock'><FontAwesomeIcon icon={faClock}/></th>
                 </tr>
             </thead>
             <tbody>
