@@ -13,7 +13,7 @@ const getAlbums = async (query) => {
         const processedAlbums = albums.map(a => ({
             id: a.id,
             title: a.title,
-            cover: a.cover,
+            cover: a.cover ? a.cover : "https://muzyka.vercel.app/img/album.png",
             nb_track: a.nb_tracks,
             artist: {
                 id: a.artist.id,
@@ -38,7 +38,7 @@ const getAlbumInfoById = async (id) => {
         processedAlbumInfo = {
             id: a.id,
             title: a.title,
-            cover: a.cover,
+            cover: a.cover ? a.cover : "https://muzyka.vercel.app/img/album.png",
             nb_tracks: a.nb_tracks,
             release_date: a.release_date,
             artist: {
@@ -46,8 +46,9 @@ const getAlbumInfoById = async (id) => {
                 name: a.artist.name,
                 picture: a.artist.picture
             },
-            tracks: a.tracks.data.map(t => ({
+            tracks: a.tracks.data.map((t, idx) => ({
                 id: t.id,
+                rank: idx+1,
                 title: t.title,
                 title_short: t.title_short,
                 duration: t.duration
@@ -73,7 +74,7 @@ const getAlbumInfoByNameAndArtist = async (artist, album) => {
         processedAlbum = {
             id: a.id,
             title: a.title,
-            cover: a.cover,
+            cover: a.cover ? a.cover : "https://muzyka.vercel.app/img/album.png",
             nb_tracks: a.nb_tracks,
             release_date: a.release_date,
             artist: {
@@ -137,7 +138,7 @@ const getArtistTracksById = async (id) => {
                 album: {
                     id: t.album.id,
                     title: t.album.title,
-                    cover: t.album.cover
+                    cover: t.album.cover ? t.album.cover : "https://muzyka.vercel.app/img/album.png",
             }
         }));
 
@@ -172,7 +173,7 @@ const getArtistTracksByName = async (artist) => {
                 album: {
                     id: t.album.id,
                     title: t.album.title,
-                    cover: t.album.cover
+                    cover: t.album.cover ? t.album.cover : "https://muzyka.vercel.app/img/album.png",
             }
         }));
 

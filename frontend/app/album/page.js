@@ -4,6 +4,10 @@ import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from "react"; 
 import axios from "axios";
 
+import Track from "../components/Track";
+import TrackList from '../components/TrackList';
+import AlbumHeader from '../components/AlbumHeader';
+
 export default function AlbumInfoPage() {
     const searchParams = useSearchParams();
     const id = searchParams.get('id');
@@ -38,31 +42,9 @@ export default function AlbumInfoPage() {
 
     return (
         <div>
-            <div>{albumInfo.id}</div>
-            <div>{albumInfo.title}</div>
-            <div>{albumInfo.cover}</div>
-            <div>{albumInfo.nb_tracks}</div>
-            <div>{albumInfo.release_date}</div>
+            <AlbumHeader albumInfo={albumInfo}/>
             <br/>
-            <div>{albumInfo.artist.id}</div>
-            <div>{albumInfo.artist.name}</div>
-            <div>{albumInfo.artist.picture}</div>
-            <br/>
-            <div>
-                {
-                    albumInfo.tracks.map(track => {
-                        return (
-                            <div>
-                                <div>{track.id}</div>
-                                <div>{track.title}</div>
-                                <div>{track.title_short}</div>
-                                <div>{track.duration}</div>
-                                <br/>
-                            </div>
-                        )
-                    })
-                }
-            </div>
+            <TrackList tracks={albumInfo.tracks}/>
         </div>
     )
 }
