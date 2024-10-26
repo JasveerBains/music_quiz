@@ -1,20 +1,20 @@
 import React from 'react';
 import Track from './Track';
-import "./track.css";
+import styles from "./track.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 
 const TrackList = ({tracks}) => {
 
     return (
-        <table>
+        <table className={styles.tracklist}>
             <thead>
                 <tr>
                     {/* <th>id</th> */}
-                    <th className='rank'>#</th>
-                    <th>Title</th>
+                    <th className={styles.rank}>#</th>
+                    <th className={styles.titleText}>Title</th>
                     {/* <th>title short</th> */}
-                    <th className='clock'><FontAwesomeIcon icon={faClock}/></th>
+                    <th className={styles.clock}><FontAwesomeIcon icon={faClock}/></th>
                 </tr>
             </thead>
             <tbody>

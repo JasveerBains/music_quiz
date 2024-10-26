@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import axios from "axios";
-import './artist.css';
+import styles from './artist.module.css';
 
 export default function ArtistResults({query}) {
   const [artists, setArtists] = useState([]);
@@ -36,18 +36,18 @@ export default function ArtistResults({query}) {
   }, [query])
 
   return (
-    <div className='artistCollection'>
+    <div className={styles.artistCollection}>
         {
         artists && artists.length > 0 ? (
             artists.map((a, i) => {
                 const randomIndex = a.name.length*17 % colours.length;
                 return (
-                  <Link href={`/artist?id=${encodeURIComponent(a.id)}`} key={i} className='artistCard' style={{backgroundColor: colours[randomIndex]}}>
-                      <div className='artistImage'>
+                  <Link href={`/artist?id=${encodeURIComponent(a.id)}`} key={i} className={styles.artistCard} style={{backgroundColor: colours[randomIndex]}}>
+                      <div className={styles.artistImage}>
                           <img src={a.picture} alt='Artist cover'></img>
                       </div>
 
-                      <div className='artistText'>
+                      <div className={styles.artistText}>
                           <h3 >{a.name}</h3>
                       </div>
                   </Link>

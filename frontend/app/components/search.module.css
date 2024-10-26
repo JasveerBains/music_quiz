@@ -1,4 +1,4 @@
-input[type="text"] {
+.searchContainer input[type="text"] {
     font-size: 1rem;
     width: 26rem;
     border: none;
@@ -32,7 +32,7 @@ input[type="text"] {
     border: 0.2rem solid blue;
 }
 
-input[type="radio"] {
+.searchContainer input[type="radio"] {
     display: none;
 }
 
@@ -46,14 +46,14 @@ input[type="radio"] {
     padding: 0 0.3rem;
 }
 
-hr {
+.searchContainer hr {
     width: 0.11rem;
     height: 2.8rem;
     border: none;
     background-color: black;
 }
 
-label {
+.searchContainer label {
     padding-top: 0.9rem;
     width: 5rem;
     font-size: 0.8rem;
@@ -62,7 +62,7 @@ label {
     text-align: center;
 }
 
-input[type="radio"]:checked + label {
+.searchContainer input[type="radio"]:checked + label {
     color: blue;
     font-size: 1.05rem;
     padding-top: 0.8em;
@@ -79,10 +79,10 @@ input[type="radio"]:checked + label {
     .options {
         border: 0.1rem solid grey;
     }
-    hr {
+    .searchContainer hr {
         background-color: grey;
     }
-    input[type="radio"]:checked + label {
+    .searchContainer input[type="radio"]:checked + label {
         color: cyan;
     }
     .bar:focus-within {

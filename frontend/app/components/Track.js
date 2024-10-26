@@ -1,4 +1,4 @@
-import "./track.css"
+import styles from "./track.module.css"
 
 export default function Track({track}) {
 
@@ -11,10 +11,10 @@ export default function Track({track}) {
     return (
         <tr>
             {/* <td>{track.id}</td> */}
-            <td className="rank">{track.rank}</td>
+            <td className={styles.rank}>{track.rank}</td>
             <td>{track.title}</td>
             {/* <td>{track.title_short}</td> */}
-            <td className="duration">{timeFormat(track.duration)}</td>
+            <td className={styles.duration}>{timeFormat(track.duration)}</td>
         </tr>
     )
 }

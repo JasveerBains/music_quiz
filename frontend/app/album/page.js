@@ -4,14 +4,12 @@ import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from "react"; 
 import axios from "axios";
 
-import Track from "../components/Track";
 import TrackList from '../components/TrackList';
-import AlbumHeader from '../components/AlbumHeader';
+import AlbumHeader from './AlbumHeader';
 
 export default function AlbumInfoPage() {
     const searchParams = useSearchParams();
     const id = searchParams.get('id');
-    console.log(id);
 
     const [albumInfo, setAlbumInfo] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -21,7 +19,6 @@ export default function AlbumInfoPage() {
             axios.get(`http://localhost:9000/api/album/info/${id}`)
               .then(res => {
                 setAlbumInfo(res.data);
-                console.log(res.data);
                 setLoading(false);
               });
         } catch (error)  {

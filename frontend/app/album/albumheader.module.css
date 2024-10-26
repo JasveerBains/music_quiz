@@ -1,0 +1,55 @@
+
+.container {
+    margin: 0 auto;
+    margin-top: 5rem;
+    display: flex;
+    width: 80%;
+
+}
+
+.coverImage {
+    width: 18rem;
+    height: 18rem;
+}
+
+.textContainer {
+    padding-left: 2rem;
+    padding-top: 2rem;
+    height: 18rem;
+}
+
+.textContainer h1 {
+    font-size: 6rem;
+}
+
+.textContainer h4 {
+    color: #686868;
+    padding: 0.15rem;
+}
+
+.artistContainer {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.artistContainer h3:hover {
+    text-decoration: underline;
+}
+
+.artistContainer h3 {
+    padding-left: 0.5rem;
+}
+
+.artistImage {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}
+
+@media (prefers-color-scheme: dark) {
+    .textContainer h4 {
+        color: grey;
+    }
+}

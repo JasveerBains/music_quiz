@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import './search.css';
+import styles from './search.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
@@ -18,14 +18,14 @@ export default function SearchBar({onSubmit}) {
     }, [searchInput, searchType]);
 
     return (
-        <form className="searchContainer" >
-            <div className="bar">
-                <FontAwesomeIcon icon={faMagnifyingGlass} className='searchIcon'/>
+        <form className={styles.searchContainer} >
+            <div className={styles.bar}>
+                <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.searchIcon}/>
                 <input type="text" placeholder="Search..." value={searchInput} onChange={(e) => {
                     setSearchInput(e.target.value);
                 }}/>
             </div>
-            <div className="options">
+            <div className={styles.options}>
                 <input type="radio" id="album" name="selection" value="album" checked={searchType=="album"} onChange={(e) => {
                     setSearchType(e.target.value);
                 }}/>

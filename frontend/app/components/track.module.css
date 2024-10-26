@@ -1,0 +1,66 @@
+
+.tracklist {
+    display: table;
+    width: 80%;
+    margin: 4rem auto;
+    font-size: 1.2rem;
+    border-spacing: 0 0.5rem;
+}
+
+
+.tracklist tr {
+    transition: background-color 0.3s, scale 0.6s;
+    background-color: lightgrey;
+}
+
+
+.tracklist tbody tr:hover {
+    scale: 1.02;
+    background-color: grey;
+}
+
+.tracklist td {
+    padding: 1.5rem 2rem;
+    transition: 0.3s;
+}
+
+
+.tracklist th {
+    padding: 0.5rem 2rem;
+    color: #686868;
+    font-weight: normal;
+}
+
+.titleText {
+    text-align: left;
+}
+
+
+.duration {
+    width: 3rem;
+    text-align: center;
+}
+
+.clock {
+    width: 3rem;
+    text-align: center;
+}
+
+.rank {
+    color: #686868;
+    font-weight: bold;
+    width: 3rem;
+    text-align: right;
+}
+
+@media (prefers-color-scheme: dark) {
+    .tracklist tr {
+        background-color: #1e1e1e;
+    }
+    .tracklist tbody tr:hover {
+        background-color: #1a1a1a;
+    }
+    .tracklist th, .rank {
+        color: grey;
+    }
+}
