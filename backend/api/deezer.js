@@ -62,35 +62,6 @@ const getAlbumInfoById = async (id) => {
     }
 }
 
-const getAlbumInfoByNameAndArtist = async (artist, album) => {
-    try {
-        const response = await axios.get(`https://api.deezer.com/search/album/`, {
-            params: {
-                q: `${album} ${artist}`
-            }
-        });
-        a = response.data.data[0];
-        processedAlbum = {
-            id: a.id,
-            title: a.title,
-            cover: a.cover_xl ? a.cover_xl : "https://muzyka.vercel.app/img/album.png",
-            nb_tracks: a.nb_tracks,
-            release_date: a.release_date,
-            artist: {
-                id: a.artist.id,
-                name: a.artist.name,
-                picture: a.artist.picture_xl
-            }
-        };
-
-        return processedAlbum;
-
-    } catch (error) {
-        console.error('Error fetching data from Deezer API:', error);
-        return "Error fetching data from Deezer API";
-    } 
-}
-
 const getArtists = async (query) => {
     try {
         const response = await axios.get("https://api.deezer.com/search/artist/", {
@@ -149,47 +120,9 @@ const getArtistTracksById = async (id) => {
     } 
 }
 
-const getArtistTracksByName = async (artist) => {
-    try {
-        const response = await axios.get(`https://api.deezer.com/search/track/`, {
-            params: {
-                q: artist,
-                limit: 100
-            }
-        });
-        tracks = response.data.data;
-        processedTracks = tracks
-            .filter(t => t.artist.name.toLowerCase() == artist.toLowerCase())
-            .map(t => ({
-                id: t.id,
-                title: t.title,
-                title_short: t.title_short,
-                duration: t.duration,
-                artist: {
-                    id: t.artist.id,
-                    name: t.artist.name,
-                },
-                album: {
-                    id: t.album.id,
-                    title: t.album.title,
-                    cover: t.album.cover_xl ? t.album.cover_xl : "https://muzyka.vercel.app/img/album.png",
-            }
-        }));
-
-        return processedTracks;
-        
-    } catch (error) {
-        console.error('Error fetching data from Deezer API:', error);
-        return "Error fetching data from Deezer API";
-    } 
-}
-
-
 module.exports = {
     getAlbums,
     getAlbumInfoById,
-    getAlbumInfoByNameAndArtist,
     getArtists,
-    getArtistTracksById,
-    getArtistTracksByName
+    getArtistTracksById
 };

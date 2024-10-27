@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 
-// api = require('./api/lastfm');
 api = require('./api/deezer');
 
 const app = express();
@@ -24,28 +23,15 @@ app.get('/api/album/info/:id', async (req, res) => {
     res.json(albumInfo);
 });
 
-app.get('/api/album/info/:artist/:album', async (req, res) => {
-    const artist = encodeURIComponent(req.params.artist);
-    const album = encodeURIComponent(req.params.album);
-    albumInfo = await api.getAlbumInfoByNameAndArtist(artist, album);
-    res.json(albumInfo);
-});
-
 app.get('/api/artist/:query', async (req, res) => {
     const query = encodeURIComponent(req.params.query);
     artists = await api.getArtists(query);
     res.json(artists);
 });
 
-app.get('/api/artist/tracks/id/:id', async (req, res) => {
+app.get('/api/artist/tracks/:id', async (req, res) => {
     const id = encodeURIComponent(req.params.id);
     tracks = await api.getArtistTracksById(id);
-    res.json(tracks);
-});
-
-app.get('/api/artist/tracks/:artist', async (req, res) => {
-    const artist = encodeURIComponent(req.params.artist);
-    tracks = await api.getArtistTracksByName(artist);
     res.json(tracks);
 });
 
