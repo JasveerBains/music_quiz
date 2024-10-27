@@ -1,7 +1,111 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
+import { useState, useEffect } from "react"; 
+import axios from "axios";
+
 export default function ArtistInfoPage() {
+    const searchParams = useSearchParams();
+    const id = searchParams.get('id');
+
+    const [artistInfo, setArtistInfo] = useState(null);
+    const [loadingInfo, setLoadingInfo] = useState(true);
+
+    const fetchArtistInfo = () => {
+        try {
+            axios.get(`http://localhost:9000/api/artist/info/${id}`)
+              .then(res => {
+                setArtistInfo(res.data);
+                setLoadingInfo(false);
+              });
+        } catch (error)  {
+            console.error("Failed to fetch artist data:", error);
+        }
+    }
+
+    const [artistAlbums, setArtistAlbums] = useState(null);
+    const [loadingAlbums, setLoadingAlbums] = useState(true);
+
+    const fetchArtistAlbums = () => {
+        try {
+            axios.get(`http://localhost:9000/api/artist/albums/${id}`)
+              .then(res => {
+                setArtistAlbums(res.data);
+                setLoadingAlbums(false);
+              });
+        } catch (error)  {
+            console.error("Failed to fetch artist data:", error);
+        }
+    }
+
+    const [artistTracks, setArtistTracks] = useState(null);
+    const [loadingTracks, setLoadingTracks] = useState(true);
+
+    const fetchArtistTracks = () => {
+        try {
+            axios.get(`http://localhost:9000/api/artist/tracks/${id}`)
+              .then(res => {
+                setArtistTracks(res.data);
+                setLoadingTracks(false);
+              });
+        } catch (error)  {
+            console.error("Failed to fetch artist data:", error);
+        }
+    }
+
+    useEffect(() => {
+        if (id && id.trim() !== "") {
+            fetchArtistInfo();
+            fetchArtistAlbums();
+            fetchArtistTracks();
+        }
+    }, [])
+
+    if (loadingInfo) {
+        return (
+            <div>loading...</div>
+        )
+    }
+
     return (
-        <div>This is the artist info page.</div>
+        <div>
+            <div>{artistInfo.id}</div>
+            <div>{artistInfo.name}</div>
+            <div>{artistInfo.picture}</div>
+            <br/>
+
+            
+            {loadingAlbums ? (
+                <div>loading...</div>
+            ) : (
+                <div>
+                    {
+                    artistAlbums.map(album => {
+                        return (
+                            <div key={album.id}>{album.title}</div>
+                        )
+                    })
+                    }
+                </div>
+            )}
+
+            <br/>
+
+            {loadingTracks ? (
+                <div>loading...</div>
+            ) : (
+                <div>
+                    {
+                    artistTracks.map(track => {
+                        return (
+                            <div key={track.id}>{track.title}</div>
+                        )
+                    })
+                    }
+                </div>
+            )}
+
+        </div>
+
     )
 }

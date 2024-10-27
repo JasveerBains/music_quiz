@@ -29,10 +29,22 @@ app.get('/api/artist/:query', async (req, res) => {
     res.json(artists);
 });
 
+app.get('/api/artist/info/:id', async (req, res) => {
+    const id = encodeURIComponent(req.params.id);
+    artist = await api.getArtistInfoById(id);
+    res.json(artist);
+});
+
 app.get('/api/artist/tracks/:id', async (req, res) => {
     const id = encodeURIComponent(req.params.id);
     tracks = await api.getArtistTracksById(id);
     res.json(tracks);
+});
+
+app.get('/api/artist/albums/:id/', async (req, res) => {
+    const id = encodeURIComponent(req.params.id);
+    albums = await api.getArtistAlbumsById(id);
+    res.json(albums);
 });
 
 app.listen(port, () => {

@@ -30,7 +30,7 @@ export default function AlbumInfoPage() {
     if (id && id.trim() !== "") {
         fetchAlbumInfo();
     }
-    }, [id])
+    }, [])
 
     if (loading) {
         return <div>loading...</div>

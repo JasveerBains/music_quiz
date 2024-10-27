@@ -14,7 +14,7 @@ const getAlbums = async (query) => {
             id: a.id,
             title: a.title,
             cover: a.cover_xl ? a.cover_xl : "https://muzyka.vercel.app/img/album.png",
-            nb_track: a.nb_tracks,
+            nb_tracks: a.nb_tracks,
             artist: {
                 id: a.artist.id,
                 name: a.artist.name,
@@ -86,6 +86,23 @@ const getArtists = async (query) => {
     } 
 }
 
+const getArtistInfoById = async (id) => {
+    try {
+        const response = await axios.get(`https://api.deezer.com/artist/${id}`);
+        artist = response.data;
+        processedArtist = {
+            id: artist.id,
+            name: artist.name,
+            picture: artist.picture_xl
+        };
+        return processedArtist;
+
+    } catch (error) {
+        console.error('Error fetching data from Deezer API:', error);
+        return "Error fetching data from Deezer API";
+    }
+}
+
 const getArtistTracksById = async (id) => {
     try {
         const response = await axios.get(`https://api.deezer.com/artist/${id}/top/`, {
@@ -120,9 +137,37 @@ const getArtistTracksById = async (id) => {
     } 
 }
 
+const getArtistAlbumsById = async (id) => {
+    try {
+        const response = await axios.get(`https://api.deezer.com/artist/${id}/albums`, {
+            params: {
+                limit: 100
+            }
+        });
+        const albums = response.data.data;
+        const processedAlbums = albums
+            .map(a => ({
+                id: a.id,
+                title: a.title,
+                cover: a.cover_xl ? a.cover_xl : "https://muzyka.vercel.app/img/album.png",
+                fans: a.fans,
+                release_date: a.release_date
+            }))
+            .sort((a,b) => b.fans-a.fans);;
+        
+        return processedAlbums;
+
+    } catch (error) {
+        console.error('Error fetching data from Deezer API:', error);
+        return "Error fetching data from Deezer API";
+    }
+}
+
 module.exports = {
     getAlbums,
     getAlbumInfoById,
     getArtists,
-    getArtistTracksById
+    getArtistInfoById,
+    getArtistTracksById,
+    getArtistAlbumsById
 };
