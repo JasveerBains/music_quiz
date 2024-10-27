@@ -31,7 +31,7 @@
   text-align: left;
 }
 
-.artistText h3, h4 {
+.artistText h3, .artistText h4 {
   margin: 0;
   max-width: 10em;
   max-height: 3em;

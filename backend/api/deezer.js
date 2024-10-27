@@ -13,12 +13,12 @@ const getAlbums = async (query) => {
         const processedAlbums = albums.map(a => ({
             id: a.id,
             title: a.title,
-            cover: a.cover,
+            cover: a.cover_xl ? a.cover_xl : "https://muzyka.vercel.app/img/album.png",
             nb_track: a.nb_tracks,
             artist: {
                 id: a.artist.id,
                 name: a.artist.name,
-                picture: a.artist.picture
+                picture: a.artist.picture_xl
             }
         }));
 
@@ -33,21 +33,21 @@ const getAlbums = async (query) => {
 const getAlbumInfoById = async (id) => {
     try {
         const response = await axios.get(`https://api.deezer.com/album/${id}`);
-        console.log(response.data);
         a = response.data;
         processedAlbumInfo = {
             id: a.id,
             title: a.title,
-            cover: a.cover,
+            cover: a.cover_xl ? a.cover_xl : "https://muzyka.vercel.app/img/album.png",
             nb_tracks: a.nb_tracks,
             release_date: a.release_date,
             artist: {
                 id: a.artist.id,
                 name: a.artist.name,
-                picture: a.artist.picture
+                picture: a.artist.picture_xl
             },
-            tracks: a.tracks.data.map(t => ({
+            tracks: a.tracks.data.map((t, idx) => ({
                 id: t.id,
+                rank: idx+1,
                 title: t.title,
                 title_short: t.title_short,
                 duration: t.duration
@@ -73,13 +73,13 @@ const getAlbumInfoByNameAndArtist = async (artist, album) => {
         processedAlbum = {
             id: a.id,
             title: a.title,
-            cover: a.cover,
+            cover: a.cover_xl ? a.cover_xl : "https://muzyka.vercel.app/img/album.png",
             nb_tracks: a.nb_tracks,
             release_date: a.release_date,
             artist: {
                 id: a.artist.id,
                 name: a.artist.name,
-                picture: a.artist.picture
+                picture: a.artist.picture_xl
             }
         };
 
@@ -104,7 +104,7 @@ const getArtists = async (query) => {
                 .map(a => ({
                     id: a.id,
                     name: a.name,
-                    picture: a.picture
+                    picture: a.picture_xl
                 }));
 
         return processedArtists;
@@ -137,7 +137,7 @@ const getArtistTracksById = async (id) => {
                 album: {
                     id: t.album.id,
                     title: t.album.title,
-                    cover: t.album.cover
+                    cover: t.album.cover_xl ? t.album.cover_xl : "https://muzyka.vercel.app/img/album.png",
             }
         }));
 
@@ -172,7 +172,7 @@ const getArtistTracksByName = async (artist) => {
                 album: {
                     id: t.album.id,
                     title: t.album.title,
-                    cover: t.album.cover
+                    cover: t.album.cover_xl ? t.album.cover_xl : "https://muzyka.vercel.app/img/album.png",
             }
         }));
 

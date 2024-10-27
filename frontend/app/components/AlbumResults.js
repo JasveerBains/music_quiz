@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import axios from "axios";
-import './album.css';
+import styles from './album.module.css';
 
 export default function AlbumResults({query}) {
 
@@ -37,18 +37,18 @@ export default function AlbumResults({query}) {
   }, [query])
 
   return (
-      <div className='albumCollection'>
+      <div className={styles.albumCollection}>
         {
           albums && albums.length > 0 ? (
             albums.map((a, i) => {
               const randomIndex = (a.title.length + a.artist.name.length)*17 % colours.length;
               return (
-                <Link href={`/album?id=${encodeURIComponent(a.id)}`} key={i} className='albumCard' style={{backgroundColor: colours[randomIndex]}}>
-                  <div className='albumImage'>
+                <Link href={`/album?id=${encodeURIComponent(a.id)}`} key={i} className={styles.albumCard} style={{backgroundColor: colours[randomIndex]}}>
+                  <div className={styles.albumImage}>
                     <img src={a.cover}></img>
                   </div>
 
-                  <div className='albumText'>
+                  <div className={styles.albumText}>
                     <h3 >{a.title}</h3>
                     <h4 >{a.artist.name}</h4>
                   </div>
