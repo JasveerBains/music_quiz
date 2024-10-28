@@ -112,9 +112,10 @@ const getArtistTracksById = async (id) => {
         });
         tracks = response.data.data;
         processedTracks = tracks
-            .filter(t => t.artist.id == id)
-            .map(t => ({
+            // .filter(t => t.artist.id == id)
+            .map((t, idx) => ({
                 id: t.id,
+                rank: idx+1,
                 title: t.title,
                 title_short: t.title_short,
                 duration: t.duration,

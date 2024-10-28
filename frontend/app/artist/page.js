@@ -3,6 +3,8 @@
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from "react"; 
 import axios from "axios";
+import TrackList from '../components/TrackList';
+import AlbumList from './AlbumList';
 
 export default function ArtistInfoPage() {
     const searchParams = useSearchParams();
@@ -78,15 +80,7 @@ export default function ArtistInfoPage() {
             {loadingAlbums ? (
                 <div>loading...</div>
             ) : (
-                <div>
-                    {
-                    artistAlbums.map(album => {
-                        return (
-                            <div key={album.id}>{album.title}</div>
-                        )
-                    })
-                    }
-                </div>
+                <AlbumList albums={artistAlbums}/>
             )}
 
             <br/>
@@ -94,15 +88,7 @@ export default function ArtistInfoPage() {
             {loadingTracks ? (
                 <div>loading...</div>
             ) : (
-                <div>
-                    {
-                    artistTracks.map(track => {
-                        return (
-                            <div key={track.id}>{track.title}</div>
-                        )
-                    })
-                    }
-                </div>
+                <TrackList tracks={artistTracks}/>
             )}
 
         </div>

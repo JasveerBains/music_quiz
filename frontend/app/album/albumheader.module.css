@@ -1,9 +1,15 @@
 
-.container {
+.outerContainer {
+    width: 90%;
+    padding: 5%;
     margin: 0 auto;
     margin-top: 5rem;
+    background-color: #d8d8d8;
+}
+
+.innerContainer {
+    margin: 0 auto;
     display: flex;
-    width: 80%;
 
 }
 
@@ -49,6 +55,9 @@
 }
 
 @media (prefers-color-scheme: dark) {
+    .outerContainer {
+        background-color: #1f1f1f;
+    }
     .textContainer h4 {
         color: grey;
     }

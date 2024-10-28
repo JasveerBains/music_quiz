@@ -29,7 +29,8 @@ const AlbumHeader = ({albumInfo}) => {
   }, [])
 
   return (
-    <div className={styles.container}>
+    <div className={styles.outerContainer}>
+    <div className={styles.innerContainer}>
 
         <img className={styles.coverImage} src={albumInfo.cover}></img>
         <div className={styles.textContainer}>
@@ -44,6 +45,7 @@ const AlbumHeader = ({albumInfo}) => {
           <h4>{convertDate(albumInfo.release_date)}</h4>
 
         </div>
+    </div>
     </div>
   )
 }

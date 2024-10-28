@@ -7,6 +7,7 @@ import { faClock } from '@fortawesome/free-regular-svg-icons';
 const TrackList = ({tracks}) => {
 
     return (
+        <div className={styles.outerContainer}>
         <table className={styles.tracklist}>
             <thead>
                 <tr>
@@ -27,6 +28,7 @@ const TrackList = ({tracks}) => {
             }
             </tbody>
         </table>
+        </div>
     )
 }
 
