@@ -32,7 +32,11 @@ const getAlbums = async (query) => {
 
 const getAlbumInfoById = async (id) => {
     try {
-        const response = await axios.get(`https://api.deezer.com/album/${id}`);
+        const response = await axios.get(`https://api.deezer.com/album/${id}`, {
+            params: {
+                limit: 100
+            }
+        });
         a = response.data;
         processedAlbumInfo = {
             id: a.id,
@@ -147,6 +151,7 @@ const getArtistAlbumsById = async (id) => {
         });
         const albums = response.data.data;
         const processedAlbums = albums
+            .filter(a => a.record_type != "single")
             .map(a => ({
                 id: a.id,
                 title: a.title,

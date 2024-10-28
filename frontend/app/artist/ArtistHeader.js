@@ -19,7 +19,7 @@ const ArtistHeader = ({artistInfo}) => {
         window.addEventListener('resize', () => adjustFontSize(textElement));
         
         return () => {
-          window.removeEventListener('resize', adjustFontSize); // Clean up the event listener
+          window.removeEventListener('resize', adjustFontSize);
         };
     }, []);
 
