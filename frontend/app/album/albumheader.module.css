@@ -1,9 +1,7 @@
 
 .outerContainer {
-    width: 90%;
-    padding: 5%;
-    margin: 0 auto;
-    margin-top: 5rem;
+    padding: 3%;
+    margin: 5%;
     background-color: #d8d8d8;
 }
 
@@ -14,8 +12,8 @@
 }
 
 .coverImage {
-    width: 18rem;
-    height: 18rem;
+    width: 22rem;
+    height: 22rem;
 }
 
 .textContainer {

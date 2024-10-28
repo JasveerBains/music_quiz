@@ -40,7 +40,6 @@ export default function AlbumInfoPage() {
     return (
         <div>
             <AlbumHeader albumInfo={albumInfo}/>
-            <br/>
             <TrackList tracks={albumInfo.tracks}/>
         </div>
     )

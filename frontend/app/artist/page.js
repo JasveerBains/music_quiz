@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import TrackList from '../components/TrackList';
 import AlbumList from './AlbumList';
+import ArtistHeader from './ArtistHeader';
 
 export default function ArtistInfoPage() {
     const searchParams = useSearchParams();
@@ -71,19 +72,13 @@ export default function ArtistInfoPage() {
 
     return (
         <div>
-            <div>{artistInfo.id}</div>
-            <div>{artistInfo.name}</div>
-            <div>{artistInfo.picture}</div>
-            <br/>
+            <ArtistHeader artistInfo={artistInfo}/>
 
-            
             {loadingAlbums ? (
                 <div>loading...</div>
             ) : (
                 <AlbumList albums={artistAlbums}/>
             )}
-
-            <br/>
 
             {loadingTracks ? (
                 <div>loading...</div>
