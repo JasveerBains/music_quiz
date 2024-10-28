@@ -1,22 +1,29 @@
 
+.outerContainer {
+    padding: 5%;
+    margin: 5%;
+    margin-top: 0;
+    background-color: #d8d8d8;
+}
+
 .tracklist {
     display: table;
-    width: 80%;
-    margin: 4rem auto;
+    width: 100%;
+    margin: 0 auto;
     font-size: 1.2rem;
     border-spacing: 0 0.5rem;
 }
 
 
 .tracklist tr {
-    transition: background-color 0.3s, scale 0.6s;
-    background-color: lightgrey;
+    transition: background-color 0.3s, scale 0.7s;
+    background-color: #c4c4c4;
 }
 
 
 .tracklist tbody tr:hover {
-    scale: 1.02;
-    background-color: grey;
+    scale: 1.04;
+    background-color: #a0a0a0;
 }
 
 .tracklist td {
@@ -54,8 +61,11 @@
 }
 
 @media (prefers-color-scheme: dark) {
+    .outerContainer {
+        background-color: #1f1f1f;
+    }
     .tracklist tr {
-        background-color: #1e1e1e;
+        background-color: #1c1c1c;
     }
     .tracklist tbody tr:hover {
         background-color: #1a1a1a;

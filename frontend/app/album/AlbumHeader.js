@@ -24,27 +24,29 @@ const AlbumHeader = ({albumInfo}) => {
     window.addEventListener('resize', () => adjustFontSize(textElement));
     
     return () => {
-      window.removeEventListener('resize', adjustFontSize); // Clean up the event listener
+      window.removeEventListener('resize', adjustFontSize);
     };
-  }, [])
+}, []);
 
-  return (
-    <div className={styles.container}>
+return (
+  <div className={styles.outerContainer}>
+  <div className={styles.innerContainer}>
 
-        <img className={styles.coverImage} src={albumInfo.cover}></img>
-        <div className={styles.textContainer}>
+    <img className={styles.coverImage} src={albumInfo.cover}></img>
+    <div className={styles.textContainer}>
 
-          <h1>{albumInfo.title}</h1>
-          <div className={styles.artistContainer}>
-            <img className={styles.artistImage} src={albumInfo.artist.picture}></img>
-            <h3><a href={`/artist?id=${encodeURIComponent(albumInfo.artist.id)}`}>{albumInfo.artist.name}</a></h3>
-          </div>
+      <h1>{albumInfo.title}</h1>
+      <div className={styles.artistContainer}>
+        <img className={styles.artistImage} src={albumInfo.artist.picture}></img>
+        <h3><a href={`/artist?id=${encodeURIComponent(albumInfo.artist.id)}`}>{albumInfo.artist.name}</a></h3>
+      </div>
 
-          <h4>{albumInfo.nb_tracks} Tracks</h4>
-          <h4>{convertDate(albumInfo.release_date)}</h4>
+      <h4>{albumInfo.nb_tracks} Tracks</h4>
+      <h4>{convertDate(albumInfo.release_date)}</h4>
 
-        </div>
     </div>
+  </div>
+  </div>
   )
 }
 

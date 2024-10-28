@@ -1,15 +1,19 @@
 
-.container {
+.outerContainer {
+    padding: 3%;
+    margin: 5%;
+    background-color: #d8d8d8;
+}
+
+.innerContainer {
     margin: 0 auto;
-    margin-top: 5rem;
     display: flex;
-    width: 80%;
 
 }
 
 .coverImage {
-    width: 18rem;
-    height: 18rem;
+    width: 22rem;
+    height: 22rem;
 }
 
 .textContainer {
@@ -49,6 +53,9 @@
 }
 
 @media (prefers-color-scheme: dark) {
+    .outerContainer {
+        background-color: #1f1f1f;
+    }
     .textContainer h4 {
         color: grey;
     }

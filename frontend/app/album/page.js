@@ -30,7 +30,7 @@ export default function AlbumInfoPage() {
     if (id && id.trim() !== "") {
         fetchAlbumInfo();
     }
-    }, [id])
+    }, [])
 
     if (loading) {
         return <div>loading...</div>
@@ -40,7 +40,6 @@ export default function AlbumInfoPage() {
     return (
         <div>
             <AlbumHeader albumInfo={albumInfo}/>
-            <br/>
             <TrackList tracks={albumInfo.tracks}/>
         </div>
     )
