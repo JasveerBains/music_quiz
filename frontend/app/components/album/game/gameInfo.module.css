@@ -1,0 +1,72 @@
+.outerContainer {
+    margin: 5%;
+    padding: 2% 3%;
+    padding-top: 2%;
+    background-color: #d8d8d8;
+    transition: 0.4s;
+    outline: 0.5rem solid rgba(1,1,1,0);
+}
+
+.outerContainer h3 {
+    padding-bottom: 2%;
+}
+
+.innerContainer {
+    display: flex;
+}
+
+.innerContainer input {
+    width: 20rem;
+    font-size: 1.5rem;
+    height: 3rem;
+    padding: 0.5rem;
+    border: 0.1rem solid grey;
+}
+
+.innerContainer input:focus {
+    outline: 0.2rem solid rgb(106, 14, 188);
+}
+
+.innerContainer b {
+    padding-left: 2rem;
+    font-size: 1.5rem;
+    line-height: 3rem;
+    color: grey;
+}
+
+.innerContainer h4 {
+    font-size: 1.5rem;
+    line-height: 3rem;
+}
+
+.options {
+    margin-left: auto;
+    display: flex;
+    font-size: 1.5rem;
+    line-height: 3rem;
+    text-align: center;
+}
+
+.options .restart {
+    width: 10rem;
+    background-color: rgb(221, 121, 0);
+    color: #1f1f1f;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.options .return {
+    width: 10rem;
+    background-color: rgb(206, 0, 0);
+    color: #1f1f1f;
+    font-weight: bold;
+    margin-left: 2rem;
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+    .outerContainer {
+        background-color: #1f1f1f;
+    }
+}

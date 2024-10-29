@@ -42,7 +42,7 @@ export default function ArtistResults({query}) {
             artists.map((a, i) => {
                 const randomIndex = a.name.length*17 % colours.length;
                 return (
-                  <Link href={`/artist?id=${encodeURIComponent(a.id)}`} key={i} className={styles.artistCard} style={{backgroundColor: colours[randomIndex]}}>
+                  <Link href={`/artist/${encodeURIComponent(a.id)}`} key={i} className={styles.artistCard} style={{backgroundColor: colours[randomIndex]}}>
                       <div className={styles.artistImage}>
                           <img src={a.picture} alt='Artist cover'></img>
                       </div>

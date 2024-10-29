@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import styles from'./albumheader.module.css';
+import Link from 'next/link';
 
 function convertDate(dateString) {
   const [year, month, day] = dateString.split("-");
@@ -38,7 +39,7 @@ return (
       <h1>{albumInfo.title}</h1>
       <div className={styles.artistContainer}>
         <img className={styles.artistImage} src={albumInfo.artist.picture}></img>
-        <h3><a href={`/artist?id=${encodeURIComponent(albumInfo.artist.id)}`}>{albumInfo.artist.name}</a></h3>
+        <h3><Link href={`/artist/${encodeURIComponent(albumInfo.artist.id)}`}>{albumInfo.artist.name}</Link></h3>
       </div>
 
       <h4>{albumInfo.nb_tracks} Tracks</h4>

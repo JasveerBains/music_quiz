@@ -1,17 +1,19 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from "react"; 
+import { useParams } from 'next/navigation';
 import axios from "axios";
 
 import TrackList from './TrackList';
 import AlbumHeader from './AlbumHeader';
 import { useAlbum } from '@/app/album/AlbumContext';
+import Link from 'next/link';
+import GameContainer from "./GameContainer";
 
 export default function MainPage() {
 
-    const searchParams = useSearchParams();
-    const id = searchParams.get('id');
+    const {id} = useParams();
+    console.log(id);
 
     const { albumInfo, setAlbumInfo } = useAlbum();
     const [loading, setLoading] = useState(true);
@@ -29,9 +31,13 @@ export default function MainPage() {
     }
     
     useEffect(() => {
-    if (id && id.trim() !== "") {
-        fetchAlbumInfo();
-    }
+        if (!albumInfo) {
+            fetchAlbumInfo();
+        } else if (albumInfo.id != id) {
+            fetchAlbumInfo();
+        } else {
+            setLoading(false);
+        }
     }, [])
 
     if (loading) {
@@ -42,6 +48,7 @@ export default function MainPage() {
     return (
         <div>
             <AlbumHeader albumInfo={albumInfo}/>
+            <GameContainer />
             <TrackList tracks={albumInfo.tracks}/>
         </div>
     )

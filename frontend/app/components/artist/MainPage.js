@@ -1,6 +1,6 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useState, useEffect } from "react"; 
 import axios from "axios";
 import TrackList from './TrackList';
@@ -8,8 +8,7 @@ import AlbumList from './AlbumList';
 import ArtistHeader from './ArtistHeader';
 
 export default function MainPage() {
-    const searchParams = useSearchParams();
-    const id = searchParams.get('id');
+    const {id} = useParams();
 
     const [artistInfo, setArtistInfo] = useState(null);
     const [loadingInfo, setLoadingInfo] = useState(true);

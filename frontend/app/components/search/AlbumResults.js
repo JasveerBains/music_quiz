@@ -43,7 +43,7 @@ export default function AlbumResults({query}) {
             albums.map((a, i) => {
               const randomIndex = (a.title.length + a.artist.name.length)*17 % colours.length;
               return (
-                <Link href={`/album?id=${encodeURIComponent(a.id)}`} key={i} className={styles.albumCard} style={{backgroundColor: colours[randomIndex]}}>
+                <Link href={`/album/${encodeURIComponent(a.id)}`} key={i} className={styles.albumCard} style={{backgroundColor: colours[randomIndex]}}>
                   <div className={styles.albumImage}>
                     <img src={a.cover}></img>
                   </div>
