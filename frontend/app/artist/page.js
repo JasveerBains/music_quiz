@@ -1,10 +1,8 @@
 'use client';
 
-import MainPage from '../components/artist/MainPage';
-
 export default function ArtistHome() {
 
     return (
-        <MainPage />
+        <div>return to search</div>
     )
 }

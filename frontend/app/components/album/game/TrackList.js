@@ -1,12 +1,11 @@
 import Track from './Track';
-import styles from "./track.module.css";
+import styles from "../track.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 
-const TrackList = ({tracks}) => {
-
+export default function TrackList({tracks, solved}) {
     return (
-        <div className={styles.outerContainer}>
+        <div id="tracklistContainer" className={styles.outerContainer}>
         <table className={styles.tracklist}>
             <thead>
                 <tr>
@@ -19,9 +18,9 @@ const TrackList = ({tracks}) => {
             </thead>
             <tbody>
             {
-                tracks.map((track) => {
+                tracks.map((track, idx) => {
                     return (
-                        <Track key={track.id} track={track}/>
+                        <Track key={track.id} track={track} solved={solved[idx]}/>
                     )
                 })
             }
@@ -30,5 +29,3 @@ const TrackList = ({tracks}) => {
         </div>
     )
 }
-
-export default TrackList
