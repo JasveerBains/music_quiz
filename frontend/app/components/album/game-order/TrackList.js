@@ -29,6 +29,7 @@ export default function TrackList({currOrder, setCurrOrder, correct}) {
             setCurrOrder(newOrder);
             setSwapped(false);
         }, 1200)
+
     }
 
     return (

@@ -36,6 +36,7 @@ const MainPage = () => {
 
     const initialiseGameState = () => {
         setCurrOrder(shuffleArray(correctOrder));
+        setCorrect([]);
     };
 
     useEffect(() => {
@@ -45,7 +46,7 @@ const MainPage = () => {
     return (
         <div>
             <Header albumInfo={albumInfo}/>
-            <GameInfo currOrder={correctOrder} correct={correct} setCorrect={setCorrect} id={albumInfo.id}/>
+            <GameInfo currOrder={correctOrder} correct={correct} setCorrect={setCorrect} id={albumInfo.id} restartGame={initialiseGameState}/>
             <TrackList currOrder={currOrder} setCurrOrder={setCurrOrder} correct={correct}/>
         </div>
     )

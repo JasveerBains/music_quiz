@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from './gameInfo.module.css';
 import Link from "next/link";
 
-export default function GameInfo({correct, setCorrect, currOrder, id}) {
+export default function GameInfo({correct, setCorrect, currOrder, id, restartGame}) {
 
     var total = 0
     currOrder.forEach(() => {
@@ -13,14 +13,6 @@ export default function GameInfo({correct, setCorrect, currOrder, id}) {
     correct.forEach(() => {
         totalCorrect += 1
     })
-
-    const restartGame = () => {
-        // var newSolved = [];
-        // for (let i=0; i<total; i++) {
-        //     newSolved.push(0);
-        // }
-        // setSolved(newSolved);
-    }
 
     return (
         <div id="gameInfoContainer" className={styles.outerContainer}>
@@ -38,6 +30,8 @@ export default function GameInfo({correct, setCorrect, currOrder, id}) {
                 }
 
                 <div className={styles.options}>
+                    <div className={styles.check} onClick={restartGame}>CHECK</div>
+
                     <div className={styles.restart} onClick={restartGame}>RESTART</div>
 
                     <Link href={`/album/${id}`}>
