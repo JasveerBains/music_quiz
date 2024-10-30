@@ -14,7 +14,6 @@ const MainPage = () => {
         return <div>go back</div>
     }
 
-    
     var trackNames = [];
     const initialiseTrackNames = () => {
         albumInfo.tracks.forEach((t) => {
@@ -42,8 +41,8 @@ const MainPage = () => {
         setSolved(blank);
     };
 
-    useEffect((trackNames) => {
-        initialiseGameState(trackNames);
+    useEffect(() => {
+        initialiseGameState();
     }, [])
 
     return (
