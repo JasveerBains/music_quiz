@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from './gameInfo.module.css';
 import Link from "next/link";
 
-export default function GameInfo({correct, setCorrect, currOrder, id, restartGame}) {
+export default function GameInfo({correct, currOrder, id, checkable, checkOrder, restartGame}) {
 
     var total = 0
     currOrder.forEach(() => {
@@ -30,7 +30,13 @@ export default function GameInfo({correct, setCorrect, currOrder, id, restartGam
                 }
 
                 <div className={styles.options}>
-                    <div className={styles.check} onClick={restartGame}>CHECK</div>
+                    {
+                        checkable ? (
+                            <div className={styles.check} onClick={checkOrder}>CHECK</div>
+                        ) : (
+                            <div className={styles.checkDisabled}>CHECK</div>
+                        )
+                    }
 
                     <div className={styles.restart} onClick={restartGame}>RESTART</div>
 

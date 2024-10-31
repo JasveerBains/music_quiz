@@ -57,6 +57,15 @@
     margin-left: 2rem;
 }
 
+.options .checkDisabled {
+    width: 10rem;
+    background-color: rgb(1, 112, 1);
+    color: #1f1f1f;
+    font-weight: bold;
+    cursor: not-allowed;
+    margin-left: 2rem;
+}
+
 .options .restart {
     width: 10rem;
     background-color: rgb(221, 121, 0);

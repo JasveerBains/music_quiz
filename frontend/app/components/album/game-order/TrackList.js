@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { useState } from 'react';
 
-export default function TrackList({currOrder, setCurrOrder, correct}) {
+export default function TrackList({currOrder, setCurrOrder, correct, setCheckable}) {
 
     const [selected, setSelected] = useState([]);
     const [swapping, setSwapping] = useState([]);
@@ -16,6 +16,7 @@ export default function TrackList({currOrder, setCurrOrder, correct}) {
         [newOrder[idx1], newOrder[idx2]] = [newOrder[idx2], newOrder[idx1]];
 
         setSelected([idx2, idx1]);
+        setCheckable(false);
         setTimeout(() => {
             setSwapping([idx2, idx1])
             setSelected([]);
@@ -28,6 +29,7 @@ export default function TrackList({currOrder, setCurrOrder, correct}) {
             setSwapping([]);
             setCurrOrder(newOrder);
             setSwapped(false);
+            setCheckable(true);
         }, 1200)
 
     }
