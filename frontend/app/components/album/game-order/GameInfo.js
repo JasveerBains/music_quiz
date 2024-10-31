@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from './gameInfo.module.css';
 import Link from "next/link";
 
-export default function GameInfo({correct, currOrder, id, checkable, checkOrder, restartGame}) {
+export default function GameInfo({correct, currOrder, id, attempts, checkable, checkOrder, restartGame}) {
 
     var total = 0
     currOrder.forEach(() => {
@@ -21,11 +21,12 @@ export default function GameInfo({correct, currOrder, id, checkable, checkOrder,
                 {
                     totalCorrect != total ? (
                         <>
+                        <h4>Attempts: {attempts}</h4>
                         <b>{totalCorrect}/{total}</b>
                         </>
 
                     ) : (
-                        <h4>Congratulations! You Win!</h4>
+                        <h4>Congratulations! You won in {attempts} attempts!</h4>
                     )
                 }
 

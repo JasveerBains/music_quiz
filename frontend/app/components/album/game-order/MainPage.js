@@ -35,8 +35,11 @@ const MainPage = () => {
     const [currOrder, setCurrOrder] = useState([]);
 
     const [checkable, setCheckable] = useState(true);
+    const [attempts, setAttempts] = useState(0);
+
     const checkOrder = () => {
-        var newCorrect = []
+        setAttempts(attempts+1);
+        var newCorrect = [];
         for (let i=0; i<currOrder.length; i++) {
             if (currOrder[i].title == correctOrder[i].title && currOrder[i].duration == correctOrder[i].duration) {
                 newCorrect.push(i)
@@ -68,6 +71,7 @@ const MainPage = () => {
     const initialiseGameState = () => {
         setCurrOrder(shuffleArray(correctOrder));
         setCorrect([]);
+        setAttempts(0);
     };
 
     useEffect(() => {
@@ -77,7 +81,7 @@ const MainPage = () => {
     return (
         <div>
             <Header albumInfo={albumInfo}/>
-            <GameInfo currOrder={correctOrder} correct={correct} id={albumInfo.id} checkable={checkable} checkOrder={checkOrder} restartGame={initialiseGameState}/>
+            <GameInfo currOrder={correctOrder} correct={correct} id={albumInfo.id} attempts={attempts} checkable={checkable} checkOrder={checkOrder} restartGame={initialiseGameState}/>
             <TrackList currOrder={currOrder} setCurrOrder={setCurrOrder} correct={correct} setCheckable={setCheckable}/>
         </div>
     )

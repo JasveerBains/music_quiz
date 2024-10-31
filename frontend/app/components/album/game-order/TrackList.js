@@ -20,17 +20,17 @@ export default function TrackList({currOrder, setCurrOrder, correct, setCheckabl
         setTimeout(() => {
             setSwapping([idx2, idx1])
             setSelected([]);
-        }, 400)
+        }, 300)
         setTimeout(() => {
             setSwapped(true);
-        }, 800)
+        }, 600)
         
         setTimeout(() => {
             setSwapping([]);
             setCurrOrder(newOrder);
             setSwapped(false);
             setCheckable(true);
-        }, 1200)
+        }, 900)
 
     }
 

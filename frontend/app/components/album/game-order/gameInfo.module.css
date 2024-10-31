@@ -28,7 +28,7 @@
 }
 
 .innerContainer b {
-    padding-left: 2rem;
+    padding-left: 4rem;
     font-size: 1.5rem;
     line-height: 3rem;
     color: grey;
@@ -37,7 +37,6 @@
 .innerContainer h4 {
     font-size: 1.5rem;
     line-height: 3rem;
-    color: limegreen;
 }
 
 .options {
