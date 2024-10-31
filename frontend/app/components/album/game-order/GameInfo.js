@@ -26,7 +26,7 @@ export default function GameInfo({correct, currOrder, id, attempts, checkable, c
                         </>
 
                     ) : (
-                        <h4>Congratulations! You won in {attempts} attempts!</h4>
+                        <h4 className={styles.success}>Congratulations! You won in {attempts} {attempts==1 ? "attempt" : "attempts"}!</h4>
                     )
                 }
 

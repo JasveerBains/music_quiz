@@ -37,6 +37,10 @@
 .innerContainer h4 {
     font-size: 1.5rem;
     line-height: 3rem;
+    
+}
+.success {
+    color: limegreen;
 }
 
 .options {
