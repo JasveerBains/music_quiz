@@ -131,8 +131,14 @@ const getArtistTracksById = async (id) => {
                     id: t.album.id,
                     title: t.album.title,
                     cover: t.album.cover_xl ? t.album.cover_xl : "https://muzyka.vercel.app/img/album.png",
-            }
-        }));
+                },
+                contributors: t.contributors.map((c) => ({
+                        id: c.id,
+                        name: c.name,
+                        picture: c.picture_xl
+                    })
+                )
+            }));
 
         return processedTracks;
 
