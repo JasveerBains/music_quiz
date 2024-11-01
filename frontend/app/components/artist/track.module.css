@@ -8,6 +8,7 @@
 
 .tracklist {
     display: table;
+    table-layout: fixed;
     width: 100%;
     margin: 0 auto;
     font-size: 1.2rem;
@@ -31,6 +32,22 @@
     transition: 0.3s;
 }
 
+.trackArtists {
+    width: 90%;
+    white-space: nowrap;
+    overflow: hidden;  
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+
+.artistContainer {
+    display: inline-block;
+}
+
+.artistContainer span {
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
 
 .tracklist th {
     padding: 0.5rem 2rem;

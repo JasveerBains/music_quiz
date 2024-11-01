@@ -12,8 +12,15 @@ export default function Track({track}) {
         <tr>
             {/* <td>{track.id}</td> */}
             <td className={styles.rank}>{track.rank}</td>
-            <td>{track.title}</td>
-            {/* <td>{track.title_short}</td> */}
+            <td className={styles.trackTitle}>{track.title}</td>
+            <td className={styles.trackArtists}>
+                    {track.contributors.map((artist, idx) => (
+                        <div className={styles.artistContainer} key={idx}>
+                        {idx === 0 && <span>{artist.name} </span>}
+                        {idx !== 0 && <span>, {artist.name}</span>}
+                        </div>
+                    ))}
+            </td>
             <td className={styles.duration}>{timeFormat(track.duration)}</td>
         </tr>
     )
