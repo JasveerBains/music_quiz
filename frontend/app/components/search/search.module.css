@@ -16,7 +16,7 @@
 
 .searchIcon {
     padding-left: 0.8rem;
-    padding-top: 0.9rem;
+    padding-top: 1rem;
     padding-right: 0.5rem;
     color: black;
 }
@@ -56,7 +56,7 @@
 
 .searchContainer label {
     /* padding-top: 0.9rem; */
-    line-height: 2.7rem;
+    line-height: 3rem;
     width: 5rem;
     font-size: 0.8rem;
     transition: 0.3s;

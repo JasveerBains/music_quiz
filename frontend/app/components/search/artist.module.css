@@ -8,13 +8,13 @@
 
 .artistCard {
   display: flex;
-  width: 20em;
-  height: 9em;
+  width: 18em;
+  height: 7em;
   margin: 2em;
   background-color: rgba(0, 200, 200, 0.5);
   padding: 1em;
   border-radius: 1.5em;
-  border: solid black 1px;
+  border: solid black 0.1rem;
   transition: 0.3s ease;
   cursor: pointer;
 }
@@ -48,5 +48,5 @@
   width: 7em;
   height: 7em;
   border-radius: 1em;
-  border: solid black 1px;
+  outline: solid black 0.1rem;
 }
