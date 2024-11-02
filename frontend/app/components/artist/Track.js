@@ -1,4 +1,5 @@
 import styles from "./track.module.css"
+import Link from "next/link";
 
 export default function Track({track}) {
 
@@ -16,8 +17,8 @@ export default function Track({track}) {
             <td className={styles.trackArtists}>
                     {track.contributors.map((artist, idx) => (
                         <div className={styles.artistContainer} key={idx}>
-                        {idx === 0 && <span>{artist.name} </span>}
-                        {idx !== 0 && <span>, {artist.name}</span>}
+                        {idx === 0 && <span><Link href={`./${artist.id}`}>{artist.name}</Link></span>}
+                        {idx !== 0 && <span>, <Link href={`./${artist.id}`}>{artist.name}</Link></span>}
                         </div>
                     ))}
             </td>
