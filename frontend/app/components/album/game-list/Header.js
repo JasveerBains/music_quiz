@@ -2,12 +2,7 @@
 
 import { useEffect } from 'react';
 import styles from'./header.module.css';
-
-function convertDate(dateString) {
-  const [year, month, day] = dateString.split("-");
-  const mon = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  return `${day} ${mon[parseInt(month)-1]} ${year}`;
-}
+import { convertDate } from '@/app/utils/stringProcessing';
 
 function adjustFontSize(element) {
   const maxAllowedWidth = window.innerWidth / 3;

@@ -76,7 +76,7 @@ export default function MainPage() {
             {loadingAlbums ? (
                 <div>loading...</div>
             ) : (
-                <AlbumList albums={artistAlbums}/>
+                artistAlbums.length!=0 && <AlbumList albums={artistAlbums}/>
             )}
 
             {loadingTracks ? (

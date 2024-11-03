@@ -14,7 +14,7 @@ const TrackList = ({tracks}) => {
                     {/* <th>id</th> */}
                     <th className={styles.rank}>#</th>
                     <th className={styles.titleText}>Title</th>
-                    {/* <th>title short</th> */}
+                    <th className={styles.titleText}>Artists</th>
                     <th className={styles.clock}><FontAwesomeIcon icon={faClock}/></th>
                 </tr>
             </thead>

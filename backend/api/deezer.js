@@ -116,23 +116,32 @@ const getArtistTracksById = async (id) => {
         });
         tracks = response.data.data;
         processedTracks = tracks
-            // .filter(t => t.artist.id == id)
-            .map((t, idx) => ({
-                id: t.id,
-                rank: idx+1,
-                title: t.title,
-                title_short: t.title_short,
-                duration: t.duration,
-                artist: {
-                    id: t.artist.id,
-                    name: t.artist.name,
-                },
-                album: {
-                    id: t.album.id,
-                    title: t.album.title,
-                    cover: t.album.cover_xl ? t.album.cover_xl : "https://muzyka.vercel.app/img/album.png",
-            }
-        }));
+            .map((t, idx) => {
+                const uniqueContributors = Array.from(
+                    new Set(t.contributors.map(c => c.id))
+                ).map(id => {
+                    const contributor = t.contributors.find(c => c.id === id);
+                    return { id: contributor.id, name: contributor.name, picture: contributor.picture_xl };
+                });
+
+                return {
+                    id: t.id,
+                    rank: idx+1,
+                    title: t.title,
+                    title_short: t.title_short,
+                    duration: t.duration,
+                    artist: {
+                        id: t.artist.id,
+                        name: t.artist.name,
+                    },
+                    album: {
+                        id: t.album.id,
+                        title: t.album.title,
+                        cover: t.album.cover_xl ? t.album.cover_xl : "https://muzyka.vercel.app/img/album.png",
+                    },
+                    contributors: uniqueContributors
+                }
+            });
 
         return processedTracks;
 

@@ -8,8 +8,8 @@
 
 .albumCard {
   display: flex;
-  width: 20rem;
-  height: 9rem;
+  width: 18rem;
+  height: 7rem;
   margin: 2rem;
   background-color: rgb(174, 19, 19);
   padding: 1rem;
@@ -27,14 +27,15 @@
 
 .albumText {
   width: 11em;
+  height: 7rem;
   margin: 0 1rem;
   text-align: left;
 }
 
 .albumText h3 {
   margin: 0;
-  max-width: 10rem;
-  max-height: 3.4rem;
+  max-width: 11rem;
+  max-height: 2.5rem;
   display: -webkit-box;
   line-clamp: 2;
   -webkit-line-clamp: 2;
@@ -61,5 +62,5 @@
   width: 7rem;
   height: 7rem;
   border-radius: 1rem;
-  border: solid black 0.1rem;
+  outline: solid black 0.1rem;
 }
