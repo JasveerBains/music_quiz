@@ -1,13 +1,8 @@
 import { useEffect, useState } from "react";
 import styles from './gameInfo.module.css';
 import Link from "next/link";
+import { compareStrings } from "@/app/utils/stringProcessing";
 
-const compareStrings = (str1, str2) => {
-    str1 = str1.replace(/\W/g, '').trim().toLowerCase();
-    str2 = str2.replace(/\W/g, '').trim().toLowerCase();
-
-    return str1 == str2
-};
 
 export default function GameInfo({trackNames, solved, setSolved, id}) {
     var correct = 0;

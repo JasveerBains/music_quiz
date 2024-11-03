@@ -6,21 +6,7 @@ import Header from './Header'
 import { useAlbum } from '@/app/album/AlbumContext';
 import TrackList from './TrackList';
 import GameInfo from './GameInfo';
-
-const shuffleArray = (array) => {
-    var arrayCopy = [...array]
-    let currentIndex = array.length;
-
-    while (currentIndex != 0) {
-
-        let randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-
-        [arrayCopy[currentIndex], arrayCopy[randomIndex]] = [
-        arrayCopy[randomIndex], arrayCopy[currentIndex]];
-    }
-    return arrayCopy
-};
+import { shuffleArray } from '@/app/utils/arrayProcessing';
 
 const MainPage = () => {
 

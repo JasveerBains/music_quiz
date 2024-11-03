@@ -1,12 +1,7 @@
 import React, { useEffect } from 'react'
 import styles from'./albumheader.module.css';
 import Link from 'next/link';
-
-function convertDate(dateString) {
-  const [year, month, day] = dateString.split("-");
-  const mon = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  return `${day} ${mon[parseInt(month)-1]} ${year}`;
-}
+import { convertDate } from '@/app/utils/stringProcessing';
 
 function adjustFontSize(element) {
   const maxAllowedWidth = window.innerWidth / 3;

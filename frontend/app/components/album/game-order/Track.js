@@ -1,12 +1,7 @@
 import styles from "./track.module.css"
+import { convertTime } from "@/app/utils/stringProcessing";
 
 export default function Track({swapping, isSelected1, isSelected2, selected, setSelected, swap, track, isCorrect, position}) {
-
-    function timeFormat(seconds) {
-        const minutes = Math.floor(seconds / 60);
-        const secs = seconds % 60;
-        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-    }
 
     function selectTrack() {
         if (swapping) {
@@ -29,7 +24,7 @@ export default function Track({swapping, isSelected1, isSelected2, selected, set
             <tr className={styles.correct}>
                 <td className={styles.rank}>{position}</td>
                 <td>{track.title}</td>
-                <td className={styles.duration}>{timeFormat(track.duration)}</td>
+                <td className={styles.duration}>{convertTime(track.duration)}</td>
             </tr>
         )
     } else if (isSelected1) {
@@ -37,7 +32,7 @@ export default function Track({swapping, isSelected1, isSelected2, selected, set
             <tr className={styles.selected1} onClick={selectTrack}>
                 <td className={styles.rank}>{position}</td>
                 <td>{track.title}</td>
-                <td className={styles.duration}>{timeFormat(track.duration)}</td>
+                <td className={styles.duration}>{convertTime(track.duration)}</td>
             </tr>
         )
     } else if (isSelected2) {
@@ -45,7 +40,7 @@ export default function Track({swapping, isSelected1, isSelected2, selected, set
             <tr className={styles.selected2} onClick={selectTrack}>
                 <td className={styles.rank}>{position}</td>
                 <td>{track.title}</td>
-                <td className={styles.duration}>{timeFormat(track.duration)}</td>
+                <td className={styles.duration}>{convertTime(track.duration)}</td>
             </tr>
         )
     }
@@ -54,7 +49,7 @@ export default function Track({swapping, isSelected1, isSelected2, selected, set
         <tr className={swapping ? styles.disabled : styles.unselected} onClick={selectTrack}>
             <td className={styles.rank}>{position}</td>
             <td>{track.title}</td>
-            <td className={styles.duration}>{timeFormat(track.duration)}</td>
+            <td className={styles.duration}>{convertTime(track.duration)}</td>
         </tr>
     )
 }
