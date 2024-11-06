@@ -14,8 +14,8 @@
     margin: 0 auto;
     font-size: 1.2rem;
     border-spacing: 0 0.5rem;
+    table-layout: fixed;
 }
-
 
 .tracklist tr {
     transition: background-color 0.3s, scale 0.7s;
@@ -38,6 +38,14 @@
     padding: 0.5rem 2rem;
     color: #686868;
     font-weight: normal;
+}
+
+.trackArtists {
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;  
+    text-overflow: ellipsis;
+    display: inline-block;
 }
 
 .artistContainer {
