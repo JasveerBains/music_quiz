@@ -38,6 +38,10 @@
     align-items: center;
 }
 
+.artistLink:hover {
+    text-decoration: underline;
+}
+
 .artistContainer h3 {
     padding-left: 0.5rem;
 }

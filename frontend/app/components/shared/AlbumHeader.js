@@ -13,7 +13,7 @@ function adjustFontSize(element) {
   }
 }
 
-const AlbumHeader = ({albumInfo}) => {
+const AlbumHeader = ({albumInfo, clickableLink}) => {
   useEffect(() => {
     const textElement = document.querySelector('h1');
     adjustFontSize(textElement);
@@ -34,7 +34,13 @@ return (
       <h1>{albumInfo.title}</h1>
       <div className={styles.artistContainer}>
         <img className={styles.artistImage} src={albumInfo.artist.picture}></img>
-        <h3><Link href={`/artist/${encodeURIComponent(albumInfo.artist.id)}`}>{albumInfo.artist.name}</Link></h3>
+        {
+            clickableLink? (
+                <h3 className={styles.artistLink}><Link href={`/artist/${encodeURIComponent(albumInfo.artist.id)}`}>{albumInfo.artist.name}</Link></h3>
+            ) : (
+                <h3>{albumInfo.artist.name}</h3>
+            )
+        }
       </div>
 
       <h4>{albumInfo.nb_tracks} Tracks</h4>

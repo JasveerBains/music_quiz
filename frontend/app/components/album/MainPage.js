@@ -5,9 +5,8 @@ import { useParams } from 'next/navigation';
 import axios from "axios";
 
 import TrackList from './TrackList';
-import AlbumHeader from './AlbumHeader';
+import AlbumHeader from '../shared/AlbumHeader';
 import { useAlbum } from '@/app/album/AlbumContext';
-import Link from 'next/link';
 import GameContainer from "./GameContainer";
 
 export default function MainPage() {
@@ -47,7 +46,7 @@ export default function MainPage() {
 
     return (
         <div>
-            <AlbumHeader albumInfo={albumInfo}/>
+            <AlbumHeader albumInfo={albumInfo} clickableLink={true}/>
             <GameContainer />
             <TrackList tracks={albumInfo.tracks}/>
         </div>

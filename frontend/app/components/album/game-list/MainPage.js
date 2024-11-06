@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState,useEffect } from 'react'
-import Header from './Header'
+import Header from '../../shared/AlbumHeader'
 
 import { useAlbum } from '@/app/album/AlbumContext';
 import TrackList from './TrackList';
@@ -47,7 +47,7 @@ const MainPage = () => {
 
     return (
         <div>
-            <Header albumInfo={albumInfo}/>
+            <Header albumInfo={albumInfo} clickableLink={false}/>
             <GameInfo trackNames={trackNames} solved={solved} setSolved={setSolved} id={albumInfo.id}/>
             <TrackList tracks={albumInfo.tracks} solved={solved}/>
         </div>
