@@ -21,7 +21,7 @@ export default function SearchBar({onSubmit}) {
         <form className={styles.searchContainer} >
             <div className={styles.bar}>
                 <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.searchIcon}/>
-                <input type="text" placeholder="Search..." value={searchInput} onChange={(e) => {
+                <input type="text" placeholder="Search..." spellCheck="false" autoComplete='false' value={searchInput} onChange={(e) => {
                     setSearchInput(e.target.value);
                 }}/>
             </div>

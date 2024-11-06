@@ -64,12 +64,12 @@ export default function GameInfo({trackNames, solved, setSolved, id}) {
             <div className={styles.innerContainer}>
                 {
                     correct != total ? (
-                        <>
-                        <input placeholder="Guess..." type="text" value={inputValue} onChange={(e) => {
+                        <form>
+                        <input placeholder="Guess..." type="text" value={inputValue} spellCheck="false" autoComplete="false" onChange={(e) => {
                             setInputValue(e.target.value)
                         }}/>
                         <b>{correct}/{total}</b>
-                        </>
+                        </form>
 
                     ) : (
                         <h4>Congratulations! You Win!</h4>
