@@ -40,6 +40,19 @@
     font-weight: normal;
 }
 
+.artistContainer {
+    display: inline-block;
+}
+
+.artistContainer span {
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+
+.artistContainer span :hover {
+    text-decoration: underline;
+}
+
 .titleText {
     text-align: left;
 }
@@ -58,7 +71,7 @@
 .rank {
     color: #686868;
     font-weight: bold;
-    width: 3rem;
+    width: 2rem;
     text-align: right;
 }
 

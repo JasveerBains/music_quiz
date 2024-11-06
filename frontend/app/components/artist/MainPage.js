@@ -3,7 +3,7 @@
 import { useParams } from 'next/navigation';
 import { useState, useEffect } from "react"; 
 import axios from "axios";
-import TrackList from './TrackList';
+import TrackList from '../shared/TrackList';
 import AlbumList from './AlbumList';
 import ArtistHeader from './ArtistHeader';
 
@@ -82,7 +82,7 @@ export default function MainPage() {
             {loadingTracks ? (
                 <div>loading...</div>
             ) : (
-                <TrackList tracks={artistTracks}/>
+                <TrackList tracks={artistTracks} displayed={Array(artistTracks.length).fill(1)}/>
             )}
 
         </div>

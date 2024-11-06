@@ -1,18 +1,18 @@
 import Track from './Track';
-import styles from "../track.module.css";
+import styles from "./track.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 
-export default function TrackList({tracks, solved}) {
+export default function TrackList({tracks, displayed}) {
+    
     return (
         <div id="tracklistContainer" className={styles.outerContainer}>
         <table className={styles.tracklist}>
             <thead>
                 <tr>
-                    {/* <th>id</th> */}
                     <th className={styles.rank}>#</th>
                     <th className={styles.titleText}>Title</th>
-                    {/* <th>title short</th> */}
+                    {Object.hasOwn(tracks[0], "contributors") && <th className={styles.titleText}>Artists</th>}
                     <th className={styles.clock}><FontAwesomeIcon icon={faClock}/></th>
                 </tr>
             </thead>
@@ -20,7 +20,7 @@ export default function TrackList({tracks, solved}) {
             {
                 tracks.map((track, idx) => {
                     return (
-                        <Track key={track.id} track={track} solved={solved[idx]}/>
+                        <Track key={track.id} track={track} display={displayed[idx]} hasArtists={Object.hasOwn(tracks[0], "contributors")}/>
                     )
                 })
             }

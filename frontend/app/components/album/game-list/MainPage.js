@@ -4,7 +4,7 @@ import React, { useState,useEffect } from 'react'
 import Header from '../../shared/AlbumHeader'
 
 import { useAlbum } from '@/app/album/AlbumContext';
-import TrackList from './TrackList';
+import TrackList from '../../shared/TrackList';
 import GameInfo from './GameInfo';
 
 const MainPage = () => {
@@ -49,7 +49,7 @@ const MainPage = () => {
         <div>
             <Header albumInfo={albumInfo} clickableLink={false}/>
             <GameInfo trackNames={trackNames} solved={solved} setSolved={setSolved} id={albumInfo.id}/>
-            <TrackList tracks={albumInfo.tracks} solved={solved}/>
+            <TrackList tracks={albumInfo.tracks} displayed={solved}/>
         </div>
     )
 }
