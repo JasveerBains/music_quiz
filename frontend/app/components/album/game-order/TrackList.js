@@ -38,7 +38,7 @@ export default function TrackList({currOrder, setCurrOrder, correct, setCheckabl
         <div id="tracklistContainer" className={styles.outerContainer}>
         <table className={styles.tracklist}>
             <thead>
-                <tr>
+                <tr className={styles.disabled}>
                     <th className={styles.rank}>#</th>
                     <th className={styles.titleText}>Title</th>
                     <th className={styles.clock}><FontAwesomeIcon icon={faClock}/></th>
