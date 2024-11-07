@@ -41,10 +41,11 @@ export default function MainPage() {
     }, [])
 
     if (loading) {
-        return <Spinner />
+        return (
+            <Spinner />
+        )
     }
     
-
     return (
         <div>
             <AlbumHeader albumInfo={albumInfo} clickableLink={true} />

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { convertDate } from '@/app/utils/stringProcessing';
 
 function adjustFontSize(element) {
-  const maxAllowedWidth = window.innerWidth / 3;
+  const maxAllowedWidth = window.innerWidth / 2;
   let fontSize = parseFloat(window.getComputedStyle(element).fontSize);
 
   while (element.scrollWidth > maxAllowedWidth && fontSize > 8) {
@@ -14,15 +14,11 @@ function adjustFontSize(element) {
 }
 
 const AlbumHeader = ({albumInfo, clickableLink}) => {
-  useEffect(() => {
-    const textElement = document.querySelector('h1');
-    adjustFontSize(textElement);
-    window.addEventListener('resize', () => adjustFontSize(textElement));
-    
-    return () => {
-      window.removeEventListener('resize', adjustFontSize);
-    };
-}, []);
+    useEffect(() => {
+        const titleText = document.querySelector('h1');
+        adjustFontSize(titleText);
+        titleText.style.visibility = "visible";
+    }, []);
 
 return (
   <div className={styles.outerContainer}>

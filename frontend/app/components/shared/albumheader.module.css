@@ -23,7 +23,9 @@
 }
 
 .textContainer h1 {
-    font-size: 6rem;
+    font-size: 5rem;
+    visibility: hidden;
+    height: 7rem;
 }
 
 .textContainer h4 {

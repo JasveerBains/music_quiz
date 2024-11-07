@@ -14,13 +14,10 @@ function adjustFontSize(element) {
 
 const ArtistHeader = ({artistInfo}) => {
     useEffect(() => {
-        const textElement = document.querySelector('h1');
-        adjustFontSize(textElement);
-        window.addEventListener('resize', () => adjustFontSize(textElement));
-        
-        return () => {
-          window.removeEventListener('resize', adjustFontSize);
-        };
+        const titleText = document.querySelector('h1');
+        adjustFontSize(titleText);
+        titleText.style.visibility = "visible";
+
     }, []);
 
     return (

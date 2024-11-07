@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState,useEffect } from 'react'
-import Header from '../../shared/AlbumHeader'
+import AlbumHeader from '../../shared/AlbumHeader'
 
 import { useAlbum } from '@/app/album/AlbumContext';
 import TrackList from './TrackList';
@@ -66,7 +66,7 @@ const MainPage = () => {
 
     return (
         <div>
-            <Header albumInfo={albumInfo} clickableLink={false}/>
+            <AlbumHeader albumInfo={albumInfo} clickableLink={false}/>
             <GameInfo currOrder={correctOrder} correct={correct} id={albumInfo.id} attempts={attempts} checkable={checkable} checkOrder={checkOrder} restartGame={initialiseGameState}/>
             <TrackList currOrder={currOrder} setCurrOrder={setCurrOrder} correct={correct} setCheckable={setCheckable}/>
         </div>
