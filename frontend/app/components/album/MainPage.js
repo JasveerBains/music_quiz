@@ -8,6 +8,7 @@ import TrackList from '../shared/TrackList';
 import AlbumHeader from '../shared/AlbumHeader';
 import { useAlbum } from '@/app/album/AlbumContext';
 import GameContainer from "./GameContainer";
+import Spinner from "../shared/Spinner";
 
 export default function MainPage() {
 
@@ -40,7 +41,7 @@ export default function MainPage() {
     }, [])
 
     if (loading) {
-        return <div>loading...</div>
+        return <Spinner />
     }
     
 

@@ -6,6 +6,7 @@ import axios from "axios";
 import TrackList from '../shared/TrackList';
 import AlbumList from './AlbumList';
 import ArtistHeader from './ArtistHeader';
+import Spinner from '../shared/Spinner';
 
 export default function MainPage() {
     const {id} = useParams();
@@ -65,7 +66,7 @@ export default function MainPage() {
 
     if (loadingInfo) {
         return (
-            <div>loading...</div>
+            <Spinner />
         )
     }
 
@@ -74,13 +75,13 @@ export default function MainPage() {
             <ArtistHeader artistInfo={artistInfo}/>
 
             {loadingAlbums ? (
-                <div>loading...</div>
+                <Spinner />
             ) : (
                 artistAlbums.length!=0 && <AlbumList albums={artistAlbums}/>
             )}
 
             {loadingTracks ? (
-                <div>loading...</div>
+                <Spinner />
             ) : (
                 <TrackList tracks={artistTracks} displayed={Array(artistTracks.length).fill(1)}/>
             )}

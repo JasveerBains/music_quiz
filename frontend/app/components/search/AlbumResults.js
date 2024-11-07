@@ -4,10 +4,12 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import axios from "axios";
 import styles from './album.module.css';
+import Spinner from '../shared/Spinner';
 
 export default function AlbumResults({query}) {
 
   const [albums, setAlbums] = useState([]);
+  const [loading, setLoading] = useState(true);
   const colours = ['rgba(200,200,0,0.5)', 
                     'rgba(0,200,200,0.5)',
                     'rgba(200,0,200,0.5)',
@@ -26,6 +28,7 @@ export default function AlbumResults({query}) {
     axios.get(`http://localhost:9000/api/album/${query}`)
       .then(res => {
         setAlbums(res.data);
+        setLoading(false);
       })
       .catch(error => console.log(error));
   }
@@ -36,10 +39,16 @@ export default function AlbumResults({query}) {
     }
   }, [query])
 
+  if (loading) {
+    return (
+      <Spinner />
+    )
+  }
+
   return (
       <div className={styles.albumCollection}>
         {
-          albums && albums.length > 0 ? (
+          albums.length > 0 ? (
             albums.map((a, i) => {
               const randomIndex = (a.title.length + a.artist.name.length)*17 % colours.length;
               return (

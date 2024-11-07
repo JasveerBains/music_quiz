@@ -40,8 +40,15 @@
     font-weight: normal;
 }
 
+.title {
+    width: 95%;
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .trackArtists {
-    width: 80%;
+    width: 95%;
     white-space: nowrap;
     overflow: hidden;  
     text-overflow: ellipsis;

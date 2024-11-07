@@ -12,7 +12,7 @@ export default function Track({track, display, hasArtists}) {
         display ? (
             <>
             <td className={styles.rank}>{track.rank}</td>
-            <td>{track.title}</td>
+            <td className={styles.title}>{track.title}</td>
             {hasArtists && (
                 <td className={styles.trackArtists}>
                 {track.contributors.map((artist, idx) => (
