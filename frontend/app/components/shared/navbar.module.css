@@ -1,0 +1,32 @@
+.navContainer {
+    height: 4rem;
+    background-color: #d8d8d8;
+    display: flex;
+}
+
+.active {
+    color: slategrey;
+    /* font-weight: bold; */
+}
+
+.navItem {
+    width: 10rem;
+    height: 4rem;
+}
+
+.navItem:hover {
+    color: slategrey;
+}
+
+.navText {
+    font-size: 2rem;
+    text-align: center;
+    line-height: 4rem;
+    transition: 0.2s;
+}
+
+@media (prefers-color-scheme: dark) {
+    .navContainer {
+        background-color: #1f1f1f;
+    }
+}

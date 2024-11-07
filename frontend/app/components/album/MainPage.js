@@ -13,7 +13,6 @@ import Spinner from "../shared/Spinner";
 export default function MainPage() {
 
     const {id} = useParams();
-    console.log(id);
 
     const { albumInfo, setAlbumInfo } = useAlbum();
     const [loading, setLoading] = useState(true);
