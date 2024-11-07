@@ -6,7 +6,6 @@ import axios from "axios";
 
 import TrackList from '../shared/TrackList';
 import AlbumHeader from '../shared/AlbumHeader';
-import { useAlbum } from '@/app/album/AlbumContext';
 import GameContainer from "./GameContainer";
 import Spinner from "../shared/Spinner";
 
@@ -14,7 +13,7 @@ export default function MainPage() {
 
     const {id} = useParams();
 
-    const { albumInfo, setAlbumInfo } = useAlbum();
+    const [albumInfo, setAlbumInfo] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const fetchAlbumInfo = () => {
@@ -22,6 +21,7 @@ export default function MainPage() {
             axios.get(`http://localhost:9000/api/album/info/${id}`)
               .then(res => {
                 setAlbumInfo(res.data);
+                localStorage.setItem('albumInfo', JSON.stringify(res.data));
                 setLoading(false);
               });
         } catch (error)  {
@@ -30,11 +30,11 @@ export default function MainPage() {
     }
     
     useEffect(() => {
-        if (!albumInfo) {
+        const storedAlbumInfo = localStorage.getItem('albumInfo');
+        if (!storedAlbumInfo || storedAlbumInfo.id != id) {
             fetchAlbumInfo();
-        } else if (albumInfo.id != id) {
-            fetchAlbumInfo();
-        } else {
+        } else if (albumInfo.length === 0) {
+            setAlbumInfo(JSON.parse(storedAlbumInfo));
             setLoading(false);
         }
     }, [])

@@ -3,15 +3,21 @@
 import React, { useState,useEffect } from 'react'
 import Header from '../../shared/AlbumHeader'
 
-import { useAlbum } from '@/app/album/AlbumContext';
 import TrackList from '../../shared/TrackList';
 import GameInfo from './GameInfo';
 
 const MainPage = () => {
 
-    const { albumInfo } = useAlbum();
-    if (!albumInfo) {
+    const [albumInfo, setAlbumInfo] = useState([]);
+    const storedAlbumInfo = localStorage.getItem('albumInfo');
+    if (!storedAlbumInfo) {
         return <div>go back</div>
+    } else {
+        if (albumInfo.length === 0) {
+            setAlbumInfo(JSON.parse(storedAlbumInfo));
+        } else {
+            console.log(albumInfo);
+        }
     }
 
     var trackNames = [];

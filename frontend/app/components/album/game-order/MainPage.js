@@ -3,18 +3,23 @@
 import React, { useState,useEffect } from 'react'
 import AlbumHeader from '../../shared/AlbumHeader'
 
-import { useAlbum } from '@/app/album/AlbumContext';
 import TrackList from './TrackList';
 import GameInfo from './GameInfo';
 import { shuffleArray } from '@/app/utils/arrayProcessing';
 
 const MainPage = () => {
 
-    const { albumInfo } = useAlbum();
-    if (!albumInfo) {
+    const [albumInfo, setAlbumInfo] = useState([]);
+    const storedAlbumInfo = localStorage.getItem('albumInfo');
+    if (!storedAlbumInfo) {
         return <div>go back</div>
+    } else {
+        if (albumInfo.length === 0) {
+            setAlbumInfo(JSON.parse(storedAlbumInfo));
+        } else {
+            console.log(albumInfo);
+        }
     }
-
     
     const [correct, setCorrect] = useState([]);
     const correctOrder = albumInfo.tracks;
