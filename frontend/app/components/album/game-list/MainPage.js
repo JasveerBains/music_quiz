@@ -1,23 +1,20 @@
 'use client';
 
 import React, { useState,useEffect } from 'react'
-import Header from '../../shared/AlbumHeader'
+import AlbumHeader from '../../shared/AlbumHeader'
 
 import TrackList from '../../shared/TrackList';
 import GameInfo from './GameInfo';
 
 const MainPage = () => {
 
-    const [albumInfo, setAlbumInfo] = useState([]);
-    const storedAlbumInfo = localStorage.getItem('albumInfo');
-    if (!storedAlbumInfo) {
-        return <div>go back</div>
-    } else {
-        if (albumInfo.length === 0) {
-            setAlbumInfo(JSON.parse(storedAlbumInfo));
-        } else {
-            console.log(albumInfo);
-        }
+    const [albumInfo, setAlbumInfo] = useState(() => {
+        const stored = localStorage.getItem('albumInfo');
+        return stored ? JSON.parse(stored) : [];
+    });
+
+    if (albumInfo.length === 0) {
+        return <div>go back</div>;
     }
 
     var trackNames = [];
@@ -53,7 +50,7 @@ const MainPage = () => {
 
     return (
         <div>
-            <Header albumInfo={albumInfo} clickableLink={false}/>
+            <AlbumHeader albumInfo={albumInfo} clickableLink={false}/>
             <GameInfo trackNames={trackNames} solved={solved} setSolved={setSolved} id={albumInfo.id}/>
             <TrackList tracks={albumInfo.tracks} displayed={solved}/>
         </div>

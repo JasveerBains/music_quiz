@@ -9,16 +9,13 @@ import { shuffleArray } from '@/app/utils/arrayProcessing';
 
 const MainPage = () => {
 
-    const [albumInfo, setAlbumInfo] = useState([]);
-    const storedAlbumInfo = localStorage.getItem('albumInfo');
-    if (!storedAlbumInfo) {
-        return <div>go back</div>
-    } else {
-        if (albumInfo.length === 0) {
-            setAlbumInfo(JSON.parse(storedAlbumInfo));
-        } else {
-            console.log(albumInfo);
-        }
+    const [albumInfo, setAlbumInfo] = useState(() => {
+        const stored = localStorage.getItem('albumInfo');
+        return stored ? JSON.parse(stored) : [];
+    });
+
+    if (albumInfo.length === 0) {
+        return <div>go back</div>;
     }
     
     const [correct, setCorrect] = useState([]);
